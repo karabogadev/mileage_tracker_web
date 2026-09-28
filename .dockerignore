@@ -1,0 +1,4 @@
+# Only nginx.conf and public/ go into the image
+*
+!nginx.conf
+!public/

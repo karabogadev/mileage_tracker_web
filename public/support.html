@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Support – Fahrtenbuch Automatisch</title>
+  <meta name="description" content="Help for Fahrtenbuch Automatisch: setting up automatic trip recording, classifying trips, subscriptions, exports and your data.">
+  <link rel="canonical" href="https://mileage.karaboga.dev/support">
+  <meta name="apple-itunes-app" content="app-id=6816878055">
+  <meta name="theme-color" content="#F7F7F4" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0B0C0D" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/assets/img/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Fahrtenbuch Automatisch">
+  <meta property="og:title" content="Support – Fahrtenbuch Automatisch">
+  <meta property="og:url" content="https://mileage.karaboga.dev/support">
+  <meta property="og:image" content="https://mileage.karaboga.dev/assets/img/og.jpg">
+  <link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/" aria-label="Fahrtenbuch Automatisch – home">
+        <img src="/assets/img/icon.svg" alt="" width="32" height="32">
+        <span>Fahrtenbuch</span>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a class="nav-link" href="/#features">Features</a>
+        <a class="nav-link" href="/#privacy">Privacy</a>
+        <a class="nav-link" href="/#pricing">Pricing</a>
+        <a class="nav-link" href="/support" aria-current="page">Support</a>
+        <a class="btn" href="https://apps.apple.com/us/app/fahrtenbuch-automatisch/id6816878055">Download</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="doc">
+    <div class="wrap">
+      <header>
+        <span class="eyebrow">Support</span>
+        <h1>How can we help?</h1>
+        <p class="lead">Answers to the most common questions about Fahrtenbuch Automatisch. Can't find what you need? Just email us.</p>
+      </header>
+
+      <div class="contact-card">
+        <div>
+          <p><strong>Email support</strong></p>
+          <p class="muted small">Please include your device model, iOS version and app version (Settings → General → About on your iPhone).</p>
+        </div>
+        <a class="btn" href="mailto:cihattkaraboga@gmail.com?subject=Fahrtenbuch%20Automatisch%20support">cihattkaraboga@gmail.com</a>
+      </div>
+
+      <h2 id="setup">Getting started</h2>
+      <div class="faq">
+        <details open>
+          <summary>How do I set up automatic recording?</summary>
+          <div class="answer">
+            <p>Fahrtenbuch starts and stops recording through two Shortcuts automations that react to your car. You only need to set them up once:</p>
+            <ol>
+              <li>Open the <strong>Shortcuts</strong> app and go to the <strong>Automation</strong> tab. Tap <strong>+</strong> (or “New Automation”).</li>
+              <li>Choose <strong>CarPlay</strong> (if your car has it) or <strong>Bluetooth</strong> and select your car. Pick <strong>Connects</strong>, and set the automation to <strong>Run Immediately</strong>.</li>
+              <li>Add the action <strong>Start trip</strong> from the app. In Shortcuts it is listed under <strong>Mileage Tracker</strong>; in the German version the action is called “Fahrt starten”.</li>
+              <li>Create a second automation for <strong>Disconnects</strong> with the action <strong>End trip</strong> (“Fahrt beenden”).</li>
+            </ol>
+            <p>That's it. From now on, every drive is recorded as soon as your iPhone connects to your car.</p>
+          </div>
+        </details>
+        <details>
+          <summary>Why does the app need location access “Always”?</summary>
+          <div class="answer">
+            <p>With “While Using the App”, iOS doesn't let Fahrtenbuch record while it's closed – which is exactly when the automation starts a trip. With “Always”, recording works in the background.</p>
+            <p>The app only uses your location between the start and the end of a trip. Your location data stays on your device. If detection is restricted, the Overview shows a notice explaining how to fix it.</p>
+          </div>
+        </details>
+        <details>
+          <summary>My car has neither CarPlay nor Bluetooth. What can I do?</summary>
+          <div class="answer"><p>You can run the <strong>Start trip</strong> and <strong>End trip</strong> actions yourself – ask Siri, or add them to your Home Screen as a Shortcuts widget. A running trip can also be ended in the app. And you can always add trips manually afterwards: pick the start and destination and the app calculates the road distance.</p></div>
+        </details>
+        <details>
+          <summary>A trip wasn't recorded. What should I check?</summary>
+          <div class="answer">
+            <ol>
+              <li>Location access for Fahrtenbuch is set to <strong>Always</strong> and <strong>Precise Location</strong> is on (iOS Settings → Fahrtenbuch → Location).</li>
+              <li>Both automations exist in the Shortcuts app and are set to <strong>Run Immediately</strong>, not “Ask Before Running”.</li>
+              <li>Your iPhone actually connected to the car – check whether CarPlay or the car's Bluetooth was active on that drive.</li>
+            </ol>
+            <p>If a trip is missing, Fahrtenbuch usually notices the gap between two trips and suggests adding it. You can also add it yourself with the <strong>+</strong> button.</p>
+          </div>
+        </details>
+        <details>
+          <summary>Does it drain my battery?</summary>
+          <div class="answer"><p>GPS only runs while a trip is being recorded. Between trips, the app doesn't use location at all. While driving, iPhones connected to CarPlay are usually charging anyway.</p></div>
+        </details>
+      </div>
+
+      <h2 id="using">Using the logbook</h2>
+      <div class="faq">
+        <details>
+          <summary>How do I classify trips?</summary>
+          <div class="answer"><p>New trips appear under <strong>Trips → To classify</strong>. Swipe right for business or left for personal. Tap <strong>Select</strong> to classify several trips at once, including as commute. You can also classify a trip straight from the notification after it ends.</p></div>
+        </details>
+        <details>
+          <summary>The app says “Route unusually long”. What happened?</summary>
+          <div class="answer"><p>Sometimes the GPS signal jumps, for example in tunnels or between tall buildings, which makes a trip look longer than it was. Fahrtenbuch compares the recording with the road route and your odometer. Tap <strong>Correct to road route</strong> to use the road distance, or <strong>Route is correct</strong> if you really took the longer way. The original recording is kept, and the correction is recorded in the change history.</p></div>
+        </details>
+        <details>
+          <summary>What does “Close week” do? <span class="pill">Pro</span></summary>
+          <div class="answer"><p>Closing a week checks that all trips are complete – trip type, purpose, client and addresses – and then locks the week. After that, trips can no longer be changed silently: every change is saved as a correction with the date, the old and the new value, and your reason. Tax authorities expect exactly this kind of tamper-evident logbook.</p></div>
+        </details>
+        <details>
+          <summary>How do I export my logbook for my tax office or accountant? <span class="pill">Pro</span></summary>
+          <div class="answer"><p>Go to <strong>Reports</strong>, choose the period and export the logbook as PDF or CSV. Share it via the share sheet – by email, AirDrop or saved to Files. The export includes the change history and marks trips that were added manually.</p></div>
+        </details>
+        <details>
+          <summary>Which regions and rates are supported?</summary>
+          <div class="answer"><p>Germany, the United Kingdom, the Netherlands, France, Spain, Australia and Canada with their official mileage rates, units and tax years. For all other countries (including Italy and Japan) you can enter your own rate. The region is taken from your iPhone's settings and can be changed in the app's Settings.</p></div>
+        </details>
+        <details>
+          <summary>Which languages does the app support?</summary>
+          <div class="answer"><p>The app is available in German today. English and further languages are coming in an upcoming update.</p></div>
+        </details>
+      </div>
+
+      <h2 id="subscription">Subscription &amp; purchases</h2>
+      <div class="faq">
+        <details>
+          <summary>What's included in Pro?</summary>
+          <div class="answer"><p>Pro adds the logbook export (PDF and CSV), closing weeks with documented corrections, and multiple vehicles. Recording, classifying, plausibility checks, reports and exporting all your raw data stay free.</p></div>
+        </details>
+        <details>
+          <summary>How do I cancel my subscription?</summary>
+          <div class="answer"><p>Open the <strong>Settings</strong> app on your iPhone, tap your name → <strong>Subscriptions</strong> → Fahrtenbuch Automatisch → <strong>Cancel Subscription</strong>. Or go directly to <a href="https://apps.apple.com/account/subscriptions">your App Store subscriptions</a>. You keep Pro until the end of the current period. To avoid being charged for a free trial, cancel at least 24 hours before it ends.</p></div>
+        </details>
+        <details>
+          <summary>I bought Pro, but the app doesn't show it.</summary>
+          <div class="answer"><p>Open the Pro screen in the app and tap <strong>Restore purchases</strong>. Make sure you're signed in with the same Apple Account you used for the purchase and that you're online.</p></div>
+        </details>
+        <details>
+          <summary>How do I get a refund?</summary>
+          <div class="answer"><p>All payments are handled by Apple, so refunds are too. Request one at <a href="https://reportaproblem.apple.com/">reportaproblem.apple.com</a>.</p></div>
+        </details>
+      </div>
+
+      <h2 id="data">Your data</h2>
+      <div class="faq">
+        <details>
+          <summary>Where is my data stored? Is it synced?</summary>
+          <div class="answer"><p>Only on your device. There's no account, no cloud sync and no server of ours that stores your trips. Details are in the <a href="/privacy">Privacy Policy</a>.</p></div>
+        </details>
+        <details>
+          <summary>How do I move my logbook to a new iPhone?</summary>
+          <div class="answer"><p>Your logbook is part of your regular device backup. Transfer your data to the new iPhone with Quick Start, or restore an iCloud or computer backup, and your trips come along. We recommend also exporting your data from time to time (Settings → Your data) as an extra copy.</p></div>
+        </details>
+        <details>
+          <summary>How do I delete my data?</summary>
+          <div class="answer"><p>Individual trips can be deleted in the trip detail view (trips in a closed week can only be corrected). To erase everything, go to <strong>Settings → Your data → Delete everything</strong>. Since we don't have a copy of your data, we can't restore it afterwards.</p></div>
+        </details>
+      </div>
+
+      <div class="contact-card">
+        <div>
+          <p><strong>Still stuck?</strong></p>
+          <p class="muted small">Send us a message – we read every email and will get back to you as soon as we can.</p>
+        </div>
+        <a class="btn" href="mailto:cihattkaraboga@gmail.com?subject=Fahrtenbuch%20Automatisch%20support">Email support</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div>
+        <a class="brand" href="/"><img src="/assets/img/icon.svg" alt="" width="28" height="28"><span>Fahrtenbuch Automatisch</span></a>
+        <p>© 2026 Cihat Karaboga</p>
+      </div>
+      <ul class="footer-links">
+        <li><a href="https://apps.apple.com/us/app/fahrtenbuch-automatisch/id6816878055">App Store</a></li>
+        <li><a href="/support" aria-current="page">Support</a></li>
+        <li><a href="/privacy">Privacy Policy</a></li>
+        <li><a href="/terms">Terms of Use</a></li>
+        <li><a href="/imprint">Imprint</a></li>
+      </ul>
+    </div>
+  </footer>
+</body>
+</html>
