@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-GB"><head>
 <meta charset="utf-8">
-<title>Übersicht – Fahrt läuft</title>
+<title>Overview – trip in progress</title>
 <style>
 body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue",Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
 *{box-sizing:border-box}
@@ -61,18 +61,22 @@ svg.sm{width:16px;height:16px;stroke-width:2.1}svg.xs{width:13px;height:13px;str
 .rt{stroke:var(--acc);fill:none;stroke-width:4.5;stroke-linecap:round;stroke-linejoin:round}
 .ps{fill:var(--card);stroke:var(--acc);stroke-width:3}.pe{fill:var(--acc);stroke:var(--card);stroke-width:2.5}
 .ml{font-size:11px;fill:var(--sec);font-weight:600;letter-spacing:.2px}
+
+.sb{position:absolute;top:0;left:0;right:0;height:54px;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:4px 34px 0 50px;font-size:17px;font-weight:600;letter-spacing:-.4px;color:var(--label);pointer-events:none}
+.sbi{display:flex;align-items:center;gap:6px}
 </style>
 </head>
 <body>
 <div class="s dark" style="width: 393px; height: 852px">
+<div class="sb" aria-hidden="true"><span>9:41</span><span class="sbi"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 12" width="18" height="12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx=".8"/><rect x="5" y="5.5" width="3" height="6.5" rx=".8"/><rect x="10" y="3" width="3" height="9" rx=".8"/><rect x="15" y="0" width="3" height="12" rx=".8"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 12" width="16" height="12" fill="currentColor"><path d="M8 2.6c2.3 0 4.4.9 6 2.4l1.1-1.2A10.2 10.2 0 0 0 8 1 10.2 10.2 0 0 0 .9 3.8L2 5a8.6 8.6 0 0 1 6-2.4Zm0 3.3c1.4 0 2.7.5 3.7 1.4l1.1-1.2A7 7 0 0 0 8 4.3a7 7 0 0 0-4.8 1.8l1.1 1.2A5.4 5.4 0 0 1 8 5.9Zm0 3.3c.6 0 1.1.2 1.5.6L8 11.5 6.5 9.8c.4-.4.9-.6 1.5-.6Z"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27 13" width="27" height="13"><rect x=".5" y=".5" width="23" height="12" rx="3.8" fill="none" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="20" height="9" rx="2.5" fill="currentColor"/><path d="M25 4.5v4a2 2 0 0 0 0-4Z" fill="currentColor" opacity=".45"/></svg></span></div>
 <div class="safe"></div>
 <div class="nav">
-<a class="chip" href="Health.dc.html" style="background: var(--ok-t); color: var(--ok)" aria-label="Erkennungsstatus öffnen"><svg xmlns="http://www.w3.org/2000/svg" class="i sm" viewBox="0 0 24 24"><path d="m5 12 4.5 4.5L19 7"></path></svg><span class="b6">Erkennung aktiv</span></a>
-<a class="nb r" href="AddTrip.dc.html" aria-label="Fahrt manuell hinzufügen"><svg xmlns="http://www.w3.org/2000/svg" class="i" viewBox="0 0 24 24" style="width: 24px; height: 24px"><path d="M12 5v14M5 12h14"></path></svg></a>
+<a class="chip" href="Health.dc.html" style="background: var(--ok-t); color: var(--ok)" aria-label="Open detection status"><svg xmlns="http://www.w3.org/2000/svg" class="i sm" viewBox="0 0 24 24"><path d="m5 12 4.5 4.5L19 7"></path></svg><span class="b6">Detection on</span></a>
+<a class="nb r" href="AddTrip.dc.html" aria-label="Add trip manually"><svg xmlns="http://www.w3.org/2000/svg" class="i" viewBox="0 0 24 24" style="width: 24px; height: 24px"><path d="M12 5v14M5 12h14"></path></svg></a>
 </div>
 <div class="ttl hr" style="justify-content: space-between; align-items: flex-end">
-<h1 class="lt" style="margin: 0">Übersicht</h1>
-<span class="fn sec" style="padding-bottom: 6px">Skoda Octavia · L-JB 2419</span>
+<h1 class="lt" style="margin: 0">Overview</h1>
+<span class="fn sec" style="padding-bottom: 6px">Skoda Octavia · LD24 KXR</span>
 </div>
 <div class="main" style="gap: 12px">
 <div class="card col" style="padding: 0; gap: 0">
@@ -94,51 +98,51 @@ svg.sm{width:16px;height:16px;stroke-width:2.1}svg.xs{width:13px;height:13px;str
 <div class="col" style="padding: 12px 16px 16px; gap: 8px">
 <div class="hr" style="gap: 8px">
 <span class="dot" style="background: var(--acc); box-shadow: 0 0 0 4px var(--acc-t)"></span>
-<span class="fn b6 up acc">Fahrt läuft · seit 14:02</span>
+<span class="fn b6 up acc">Trip in progress · since 14:02</span>
 </div>
 <div class="hr" style="justify-content: space-between; align-items: baseline">
-<span class="num" style="font-size: 34px; line-height: 41px; font-weight: 700">12,4 km</span>
-<span class="co sec num">18 Min.</span>
+<span class="num" style="font-size: 34px; line-height: 41px; font-weight: 700">7.7 mi</span>
+<span class="co sec num">18 min</span>
 </div>
-<span class="sh sec">Start: Büro, Karl-Heine-Straße 28, Leipzig</span>
+<span class="sh sec">Start: Office, 5 Park Row, Leeds</span>
 <div class="hr" style="gap: 8px; padding-top: 4px">
-<button class="btn sm t" type="button"><svg xmlns="http://www.w3.org/2000/svg" class="i sm" viewBox="0 0 24 24"><path d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7M4 7h16v12H4zM4 12h16"></path></svg>Vorab dienstlich</button>
-<button class="btn sm" type="button" style="background: var(--fill); color: var(--label)">Fahrt beenden</button>
+<button class="btn sm t" type="button"><svg xmlns="http://www.w3.org/2000/svg" class="i sm" viewBox="0 0 24 24"><path d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7M4 7h16v12H4zM4 12h16"></path></svg>Mark business</button>
+<button class="btn sm" type="button" style="background: var(--fill); color: var(--label)">End trip</button>
 </div>
 </div>
 </div>
 <div class="card hr" style="gap: 12px; padding: 14px 16px; justify-content: space-between">
 <div class="col" style="gap: 2px">
-<span class="fn sec b6 up">September · dienstlich</span>
-<div class="hr" style="align-items: baseline; gap: 5px"><span class="num" style="font-size: 28px; line-height: 34px; font-weight: 700">412</span><span class="co sec">km</span></div>
+<span class="fn sec b6 up">September · business</span>
+<div class="hr" style="align-items: baseline; gap: 5px"><span class="num" style="font-size: 28px; line-height: 34px; font-weight: 700">256</span><span class="co sec">mi</span></div>
 </div>
 <div class="col" style="gap: 2px; align-items: flex-end">
-<span class="fn sec">absetzbar, geschätzt</span>
-<span class="t3 num">≈ 124 €</span>
+<span class="fn sec">claimable, estimate</span>
+<span class="t3 num">≈ £140.80</span>
 </div>
 </div>
 <a class="card hr" href="Inbox.dc.html" style="gap: 14px; text-decoration: none; color: inherit; padding: 14px 16px">
 <div class="ico" style="width: 44px; height: 44px; border-radius: 12px; background: var(--acc-t); color: var(--acc)"><svg xmlns="http://www.w3.org/2000/svg" class="i" viewBox="0 0 24 24" style="width: 24px; height: 24px"><path d="M4 13h4.5l1.5 3h4l1.5-3H20"></path><path d="M4 13 6.5 5h11L20 13v6H4z"></path></svg></div>
 <div class="col grow">
-<span class="hl"><span class="num">7</span> Fahrten einordnen</span>
-<span class="sh sec">Wischen: → dienstlich, ← privat</span>
+<span class="hl"><span class="num">7</span> trips to classify</span>
+<span class="sh sec">Swipe: → business, ← personal</span>
 </div>
 <svg xmlns="http://www.w3.org/2000/svg" class="i xs chev" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"></path></svg>
 </a>
 <a class="card hr" href="WeekClose.dc.html" style="gap: 14px; text-decoration: none; color: inherit; padding: 14px 16px">
 <div class="ico" style="width: 44px; height: 44px; border-radius: 12px; background: var(--fill); color: var(--label)"><svg xmlns="http://www.w3.org/2000/svg" class="i" viewBox="0 0 24 24" style="width: 24px; height: 24px"><rect x="3.5" y="5" width="17" height="15.5" rx="2"></rect><path d="M3.5 10h17M8 3v4M16 3v4M9 15l2 2 4-4"></path></svg></div>
 <div class="col grow" style="gap: 4px">
-<span class="hl">KW 39 abschließen</span>
-<span class="tag w" style="align-self: flex-start"><svg xmlns="http://www.w3.org/2000/svg" class="i xs" viewBox="0 0 24 24"><path d="M12 4 3 20h18zM12 10v4M12 17v.01"></path></svg><span class="num">2</span> unvollständig</span>
+<span class="hl">Close week 39</span>
+<span class="tag w" style="align-self: flex-start"><svg xmlns="http://www.w3.org/2000/svg" class="i xs" viewBox="0 0 24 24"><path d="M12 4 3 20h18zM12 10v4M12 17v.01"></path></svg><span class="num">2</span> incomplete</span>
 </div>
 <svg xmlns="http://www.w3.org/2000/svg" class="i xs chev" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"></path></svg>
 </a>
 </div>
 <nav class="tabbar" aria-label="Tabs">
-<a class="tab on" href="Main.dc.html"><svg xmlns="http://www.w3.org/2000/svg" class="i" viewBox="0 0 24 24"><path d="M3.5 17.5a8.5 8.5 0 1 1 17 0"></path><path d="M12 17.5l4.5-5.5"></path></svg>Übersicht</a>
-<a class="tab" href="Inbox.dc.html"><svg xmlns="http://www.w3.org/2000/svg" class="i" viewBox="0 0 24 24"><path d="M5 17v-5l2.2-5.2A2 2 0 0 1 9 5.5h6a2 2 0 0 1 1.8 1.3L19 12v5"></path><path d="M3.5 17h17v2.5h-3V17M6.5 19.5h-3V17M5 12h14"></path></svg><span class="badge num">7</span>Fahrten</a>
-<a class="tab" href="Reports.dc.html"><svg xmlns="http://www.w3.org/2000/svg" class="i" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"></path><path d="M14 3v4h4M9 12h6M9 16h6"></path></svg>Berichte</a>
-<a class="tab" href="Settings.dc.html"><svg xmlns="http://www.w3.org/2000/svg" class="i" viewBox="0 0 24 24"><path d="M12 2.5l1.6 2.3 2.7-.8.6 2.8 2.8.6-.8 2.7 2.3 1.6-2.3 1.6.8 2.7-2.8.6-.6 2.8-2.7-.8L12 21.5l-1.6-2.3-2.7.8-.6-2.8-2.8-.6.8-2.7L2.8 12l2.3-1.6-.8-2.7 2.8-.6.6-2.8 2.7.8z"></path><circle cx="12" cy="12" r="3.2"></circle></svg>Einstellungen</a>
+<a class="tab on" href="Main.dc.html"><svg xmlns="http://www.w3.org/2000/svg" class="i" viewBox="0 0 24 24"><path d="M3.5 17.5a8.5 8.5 0 1 1 17 0"></path><path d="M12 17.5l4.5-5.5"></path></svg>Overview</a>
+<a class="tab" href="Inbox.dc.html"><svg xmlns="http://www.w3.org/2000/svg" class="i" viewBox="0 0 24 24"><path d="M5 17v-5l2.2-5.2A2 2 0 0 1 9 5.5h6a2 2 0 0 1 1.8 1.3L19 12v5"></path><path d="M3.5 17h17v2.5h-3V17M6.5 19.5h-3V17M5 12h14"></path></svg><span class="badge num">7</span>Trips</a>
+<a class="tab" href="Reports.dc.html"><svg xmlns="http://www.w3.org/2000/svg" class="i" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"></path><path d="M14 3v4h4M9 12h6M9 16h6"></path></svg>Reports</a>
+<a class="tab" href="Settings.dc.html"><svg xmlns="http://www.w3.org/2000/svg" class="i" viewBox="0 0 24 24"><path d="M12 2.5l1.6 2.3 2.7-.8.6 2.8 2.8.6-.8 2.7 2.3 1.6-2.3 1.6.8 2.7-2.8.6-.6 2.8-2.7-.8L12 21.5l-1.6-2.3-2.7.8-.6-2.8-2.8-.6.8-2.7L2.8 12l2.3-1.6-.8-2.7 2.8-.6.6-2.8 2.7.8z"></path><circle cx="12" cy="12" r="3.2"></circle></svg>Settings</a>
 </nav>
 </div>
 </body></html>
