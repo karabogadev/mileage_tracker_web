@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en-GB"><head>
+<meta charset="utf-8">
+<title>Fahrtdetail – Strecke ungewöhnlich lang</title>
+<style>
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue",Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+.s{--bg:#F2F2F7;--card:#FFFFFF;--card2:#F2F2F7;--fill:rgba(118,118,128,.12);--label:#000000;--sec:#6C6C70;--ter:#8A8A8E;--sep:rgba(60,60,67,.22);--acc:#0B6B74;--acc-t:#E2F0F1;--on:#FFFFFF;--biz:#2A55C9;--biz-t:#E7EDFB;--pri:#A34E06;--com:#6B45B8;--warn:#8F5200;--warn-t:#FFF3DC;--err:#C1271D;--ok:#1B7A43;--ok-t:#E3F4EA;--m-bg:#ECEDE8;--m-rd:#FFFFFF;--m-mn:#DADBD3;--m-pk:#D6E5CC;--m-wt:#C8DBEA;--m-bl:#E2E2DB;position:relative;overflow:hidden;display:flex;flex-direction:column;background:var(--bg);color:var(--label);font-size:17px;line-height:22px;letter-spacing:-.41px}
+.s.dark{--bg:#000000;--card:#1C1C1E;--card2:#2C2C2E;--fill:rgba(118,118,128,.24);--label:#FFFFFF;--sec:#AEAEB2;--ter:#8D8D93;--sep:rgba(84,84,88,.65);--acc:#3FC1C9;--acc-t:#0D3437;--on:#00292C;--biz:#86ABFF;--biz-t:#1B2848;--pri:#F4A45E;--com:#BBA0F6;--warn:#FFB84D;--warn-t:#3A2A0C;--err:#FF7B72;--ok:#5BD08A;--ok-t:#0F2F1D;--m-bg:#24272B;--m-rd:#3B3F45;--m-mn:#2E3136;--m-pk:#1F2B23;--m-wt:#1B2734;--m-bl:#2B2E32}
+.num{font-variant-numeric:tabular-nums}
+.t2{font-size:22px;line-height:28px;font-weight:700;letter-spacing:.35px}
+.hl{font-size:17px;line-height:22px;font-weight:600}
+.sh{font-size:15px;line-height:20px;letter-spacing:-.24px}
+.fn{font-size:13px;line-height:18px;letter-spacing:-.08px}
+.sec{color:var(--sec)}.b6{font-weight:600}.up{text-transform:uppercase}
+.col{display:flex;flex-direction:column}.hr{display:flex;align-items:center}.grow{flex:1;min-width:0}
+.fab{position:absolute;top:56px;display:inline-flex;align-items:center;gap:2px;height:36px;padding:0 12px 0 8px;border-radius:18px;background:var(--card);color:var(--acc);font-family:inherit;font-size:17px;letter-spacing:-.41px;text-decoration:none;border:0;box-shadow:0 2px 10px rgba(0,0,0,.24)}
+.grp{background:var(--card);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.grp>*{position:relative}
+.grp>*+*::before{content:"";position:absolute;left:16px;right:0;top:0;height:.5px;background:var(--sep)}
+.grp>.ri::before{left:52px}
+.row{display:flex;align-items:center;gap:12px;min-height:44px;padding:11px 16px;color:inherit;text-decoration:none}
+.gh{font-size:13px;line-height:18px;color:var(--sec);text-transform:uppercase;padding:0 16px 7px}
+.gf{font-size:13px;line-height:18px;color:var(--sec);padding:7px 16px 0}
+svg.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+svg.sm{width:16px;height:16px;stroke-width:2.1}svg.xs{width:13px;height:13px;stroke-width:2.6}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;height:50px;width:100%;border:0;border-radius:14px;background:var(--acc);color:var(--on);font-family:inherit;font-size:17px;font-weight:600;letter-spacing:-.41px;text-decoration:none;cursor:pointer;flex:none}
+.btn.t{background:var(--fill);color:var(--label)}
+.tag{display:inline-flex;align-items:center;gap:4px;height:24px;padding:0 8px 0 6px;border-radius:6px;font-size:13px;font-weight:600;line-height:18px;letter-spacing:-.08px;white-space:nowrap;flex:none}
+.tag.w{background:var(--warn-t);color:var(--warn)}
+.seg{display:grid;background:var(--fill);border-radius:9px;padding:2px;height:36px;flex:none}
+.seg>button{border:0;background:none;border-radius:7px;font-family:inherit;font-size:13px;font-weight:500;letter-spacing:-.08px;color:var(--label);display:flex;align-items:center;justify-content:center;gap:5px;padding:0 4px;white-space:nowrap}
+.map{display:block;width:100%;height:100%}
+.mbg{fill:var(--m-bg)}.mpk{fill:var(--m-pk)}.mwt{fill:var(--m-wt)}.mbl{fill:var(--m-bl)}
+.mrd{stroke:var(--m-rd);fill:none;stroke-linecap:round;stroke-linejoin:round}.mmn{stroke:var(--m-mn);fill:none;stroke-linecap:round;stroke-width:3}
+.rtc{stroke:var(--card);fill:none;stroke-width:9;stroke-linecap:round;stroke-linejoin:round}
+.rt{stroke:var(--acc);fill:none;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+.gps{fill:none;stroke:var(--warn);stroke-width:3;stroke-dasharray:6 6;stroke-linecap:round;stroke-linejoin:round}
+.ps{fill:var(--card);stroke:var(--acc);stroke-width:3.5}.pe{fill:var(--acc);stroke:var(--card);stroke-width:2.5}
+.ml{font-size:12px;fill:var(--sec);font-weight:600;letter-spacing:.2px}
+</style>
+</head>
+<body>
+<div class="s dark" style="width: 393px; height: 1100px">
+<div style="height: 300px; flex: none; position: relative">
+<svg xmlns="http://www.w3.org/2000/svg" class="map" viewBox="0 0 393 300" preserveAspectRatio="xMidYMid slice">
+<rect class="mbg" width="393" height="300"></rect>
+<path class="mpk" d="M246 206c30-12 62-2 82 18s12 52-18 62h-72c-10-30-12-60 8-80z"></path>
+<path class="mwt" d="M300 0c-10 40 20 70 0 112s-40 60-20 100 30 58 20 88h-11c8-28-8-50-20-86s12-70 20-102-8-60-2-112z"></path>
+<g class="mbl"><rect x="310" y="230" width="22" height="16" rx="2"></rect><rect x="340" y="230" width="30" height="16" rx="2"></rect><rect x="40" y="70" width="26" height="16" rx="2"></rect><rect x="72" y="70" width="18" height="16" rx="2"></rect></g>
+<path class="mmn" d="M0 210h393M200 0v300M30 60l80 60M0 250c80-10 160 10 240-20"></path>
+<path class="mrd" d="M0 150C100 140 200 176 393 164" style="stroke-width: 10"></path>
+<path class="mrd" d="M60 0c20 100 60 200 50 300" style="stroke-width: 7"></path>
+<path class="rtc" d="M78 96 96 118 140 150 202 170 262 192 304 232 332 258"></path>
+<path class="rt" d="M78 96 96 118 140 150 202 170 262 192 304 232 332 258"></path>
+<path class="gps" d="M78 96 96 118 140 150 196 166 362 30 212 178 262 196 304 234 332 258"></path>
+<circle cx="362" cy="30" r="12" style="fill: var(--warn)"></circle>
+<path d="M362 23v8M362 36v.5" style="stroke: #000000; stroke-width: 2.6; stroke-linecap: round"></path>
+<circle class="ps" cx="78" cy="96" r="7"></circle>
+<g transform="translate(332 258)"><path class="pe" d="M0 0c-9-11-14-17-14-23a14 14 0 0 1 28 0c0 6-5 12-14 23z"></path><circle cx="0" cy="-23" r="5" style="fill: var(--card)"></circle></g>
+<text class="ml" x="24" y="120">Halle (Saale)</text>
+<text class="ml" x="190" y="196">Schkeuditz</text>
+<text class="ml" x="316" y="292">Leipzig</text>
+</svg>
+<a class="fab" href="Inbox.dc.html" style="left: 16px"><svg xmlns="http://www.w3.org/2000/svg" class="i" viewBox="0 0 24 24" style="stroke-width: 2.4"><path d="m15 5-7 7 7 7"></path></svg>Fahrten</a>
+</div>
+<div class="col" style="margin-top: -16px; background: var(--bg); border-radius: 16px 16px 0 0; padding: 18px 16px 40px; gap: 20px; position: relative">
+<div class="col" style="gap: 6px">
+<span class="fn sec b6 up">Mo. 28. Sept. 2026</span>
+<div class="hr" style="justify-content: space-between; align-items: flex-end">
+<div class="col"><span class="t2 num">12:05 – 12:48</span><span class="sh sec num">43 Min.</span></div>
+<div class="col" style="align-items: flex-end; gap: 4px"><span class="num" style="font-size: 28px; line-height: 34px; font-weight: 700; color: var(--warn)">96,4 km</span><span class="tag w">ungeprüft</span></div>
+</div>
+</div>
+<div class="col" style="background: var(--card); border-radius: 16px; padding: 16px; gap: 12px">
+<div class="hr" style="gap: 10px; align-items: flex-start">
+<div class="hr" style="width: 32px; height: 32px; border-radius: 16px; background: var(--warn-t); color: var(--warn); justify-content: center; flex: none"><svg xmlns="http://www.w3.org/2000/svg" class="i sm" viewBox="0 0 24 24"><path d="M12 4 3 20h18zM12 10v4M12 17v.01"></path></svg></div>
+<div class="col grow" style="gap: 2px">
+<span class="hl">Strecke ungewöhnlich lang</span>
+<span class="sh sec">96,4 km in 43 Min. wären Ø <span class="num">134 km/h</span>. Bei Schkeuditz springt das GPS 38 km weit und zurück.</span>
+</div>
+</div>
+<div class="col" style="gap: 6px; padding: 10px 12px; border-radius: 10px; background: var(--fill)">
+<div class="hr" style="gap: 10px"><svg viewBox="0 0 28 6" style="width: 28px; height: 6px; flex: none"><path d="M2 3h24" style="stroke: var(--warn); stroke-width: 3; stroke-dasharray: 5 4; stroke-linecap: round"></path></svg><span class="fn grow">Aufgezeichnet (GPS)</span><span class="fn num b6">96,4 km</span></div>
+<div class="hr" style="gap: 10px"><svg viewBox="0 0 28 6" style="width: 28px; height: 6px; flex: none"><path d="M2 3h24" style="stroke: var(--acc); stroke-width: 4; stroke-linecap: round"></path></svg><span class="fn grow">Straßenroute (Vorschlag)</span><span class="fn num b6">41,2 km</span></div>
+</div>
+<button class="btn" type="button"><svg xmlns="http://www.w3.org/2000/svg" class="i" viewBox="0 0 24 24"><path d="M8 3 5 21M16 3l3 18M12 5v2M12 11v2M12 17v2"></path></svg>Auf Straßenroute korrigieren</button>
+<button class="btn t" type="button" style="height: 44px">Strecke ist korrekt</button>
+<span class="fn sec">Die Korrektur landet im Änderungsverlauf. Die GPS-Aufzeichnung bleibt als Beleg erhalten.</span>
+</div>
+<div class="col">
+<div class="gh">Kilometerstand</div>
+<div class="grp">
+<div class="row"><span class="grow">Start</span><span class="num">48.206 km</span></div>
+<div class="row"><span class="grow">Ende</span><span class="num" style="color: var(--warn)">48.302 km</span></div>
+<div class="row" style="background: var(--warn-t); color: var(--warn); align-items: flex-start; gap: 10px">
+<svg xmlns="http://www.w3.org/2000/svg" class="i sm" viewBox="0 0 24 24" style="margin-top: 1px"><path d="M4 18a8 8 0 1 1 16 0M12 18l4-6"></path></svg>
+<span class="fn"><span class="b6">Passt nicht zur Ablesung:</span> Tacho zeigte um 13:05 <span class="num">48.247 km</span> (Differenz <span class="num">55 km</span>). Mit der Straßenroute stimmt es genau.</span>
+</div>
+</div>
+</div>
+<div class="col">
+<div class="gh">Fahrtart · noch nicht eingeordnet</div>
+<div class="seg" style="grid-template-columns: repeat(3, minmax(0, 1fr))" role="group" aria-label="Fahrtart">
+<button type="button"><svg xmlns="http://www.w3.org/2000/svg" class="i sm" viewBox="0 0 24 24"><path d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7M4 7h16v12H4zM4 12h16"></path></svg>Dienstlich</button>
+<button type="button"><svg xmlns="http://www.w3.org/2000/svg" class="i sm" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg>Privat</button>
+<button type="button"><svg xmlns="http://www.w3.org/2000/svg" class="i sm" viewBox="0 0 24 24"><path d="M4 8h15l-3-3M20 16H5l3 3"></path></svg>Arbeitsweg</button>
+</div>
+</div>
+<div class="grp">
+<div class="row ri" style="align-items: flex-start">
+<svg xmlns="http://www.w3.org/2000/svg" class="i" viewBox="0 0 24 24" style="color: var(--acc); margin-top: 1px"><circle cx="12" cy="12" r="5"></circle></svg>
+<div class="col grow"><span class="hl"><span class="num">12:05</span> · Müller Haustechnik GmbH</span><span class="sh sec">Merseburger Str. 190, 06110 Halle (Saale)</span></div>
+</div>
+<div class="row ri" style="align-items: flex-start">
+<svg xmlns="http://www.w3.org/2000/svg" class="i" viewBox="0 0 24 24" style="color: var(--acc); margin-top: 1px"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>
+<div class="col grow"><span class="hl"><span class="num">12:48</span> · Büro</span><span class="sh sec">Karl-Heine-Straße 28, 04229 Leipzig</span></div>
+</div>
+</div>
+</div>
+</div>
+</body></html>

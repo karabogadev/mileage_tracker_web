@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en-GB"><head>
+<meta charset="utf-8">
+<title>Woche abschließen</title>
+<style>
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue",Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+.s{--bg:#F2F2F7;--card:#FFFFFF;--card2:#F2F2F7;--fill:rgba(118,118,128,.12);--label:#000000;--sec:#6C6C70;--ter:#8A8A8E;--sep:rgba(60,60,67,.22);--bar:rgba(242,242,247,.94);--acc:#0B6B74;--acc-t:#E2F0F1;--on:#FFFFFF;--biz:#2A55C9;--biz-t:#E7EDFB;--pri:#A34E06;--pri-t:#FCEEDF;--warn:#8F5200;--warn-t:#FFF3DC;--ok:#1B7A43;--ok-t:#E3F4EA;position:relative;overflow:hidden;display:flex;flex-direction:column;background:#000000;color:var(--label);font-size:17px;line-height:22px;letter-spacing:-.41px}
+.s.dark{--bg:#1C1C1E;--card:#2C2C2E;--card2:#3A3A3C;--fill:rgba(118,118,128,.24);--label:#FFFFFF;--sec:#AEAEB2;--ter:#8D8D93;--sep:rgba(84,84,88,.65);--bar:rgba(28,28,30,.94);--acc:#3FC1C9;--acc-t:#0D3437;--on:#00292C;--biz:#86ABFF;--biz-t:#1B2848;--pri:#F4A45E;--pri-t:#3A2511;--warn:#FFB84D;--warn-t:#3A2A0C;--ok:#5BD08A;--ok-t:#0F2F1D}
+.num{font-variant-numeric:tabular-nums}
+.t1{font-size:28px;line-height:34px;font-weight:700;letter-spacing:.36px}
+.t3{font-size:20px;line-height:25px;font-weight:600;letter-spacing:.38px}
+.hl{font-size:17px;line-height:22px;font-weight:600}
+.sh{font-size:15px;line-height:20px;letter-spacing:-.24px}
+.fn{font-size:13px;line-height:18px;letter-spacing:-.08px}
+.sec{color:var(--sec)}.b6{font-weight:600}
+.col{display:flex;flex-direction:column}.hr{display:flex;align-items:center}.grow{flex:1;min-width:0}
+.nb{display:inline-flex;align-items:center;gap:4px;border:0;background:none;padding:0;color:var(--acc);font-family:inherit;font-size:17px;letter-spacing:-.41px;min-height:44px;text-decoration:none;cursor:pointer}
+.grp{background:var(--card);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.grp>*{position:relative}
+.grp>*+*::before{content:"";position:absolute;left:52px;right:0;top:0;height:.5px;background:var(--sep)}
+.row{display:flex;align-items:center;gap:12px;min-height:44px;padding:11px 16px;color:inherit;text-decoration:none}
+.gh{font-size:13px;line-height:18px;color:var(--sec);text-transform:uppercase;padding:0 16px 7px}
+svg.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+svg.sm{width:16px;height:16px;stroke-width:2.1}svg.xs{width:13px;height:13px;stroke-width:2.6}
+.chev{color:var(--ter)}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;height:50px;width:100%;border:0;border-radius:14px;background:var(--acc);color:var(--on);font-family:inherit;font-size:17px;font-weight:600;letter-spacing:-.41px;text-decoration:none;cursor:pointer;flex:none}
+.btn:disabled{background:var(--fill);color:var(--sec);cursor:default}
+.mini{height:30px;border:0;border-radius:15px;padding:0 10px;font-family:inherit;font-size:13px;font-weight:600;display:inline-flex;align-items:center;gap:4px}
+.sheet{position:absolute;left:0;right:0;bottom:0;top:58px;background:var(--bg);border-radius:12px 12px 0 0;display:flex;flex-direction:column;overflow:hidden}
+.stat{background:var(--card);border-radius:12px;padding:10px 12px;display:flex;flex-direction:column}
+</style>
+</head>
+<body>
+<div class="s" style="width: 393px; height: 852px">
+<div style="position: absolute; top: 46px; left: 18px; right: 18px; height: 40px; border-radius: 12px 12px 0 0; background: var(--bg); opacity: .55"></div>
+<div class="sheet">
+<div class="hr" style="justify-content: space-between; padding: 6px 16px 0; flex: none">
+<a class="nb" href="Main.dc.html">Abbrechen</a>
+<span class="fn sec">KW 39</span>
+<span style="width: 80px"></span>
+</div>
+<div class="col" style="gap: 18px; padding: 4px 16px 0; flex: 1; min-height: 0">
+<div class="col" style="gap: 2px">
+<h2 class="t1" style="margin: 0">Woche abschließen</h2>
+<span class="sh sec">21.–27. Sept. 2026 · Skoda Octavia, L-JB 2419</span>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+<div class="stat"><span class="t3 num">14</span><span class="fn sec">Fahrten</span></div>
+<div class="stat"><span class="t3 num">318 km</span><span class="fn sec">gesamt</span></div>
+<div class="stat"><span class="t3 num">207 km</span><span class="fn sec">dienstlich</span></div>
+</div>
+<div class="col">
+<div class="gh">Noch offen · 2 Fahrten, 1 Lücke</div>
+<div class="grp">
+<a class="row" href="AddTrip.dc.html" style="align-items: flex-start">
+<div class="hr" style="width: 24px; height: 24px; border-radius: 12px; background: var(--warn-t); color: var(--warn); justify-content: center; flex: none"><svg xmlns="http://www.w3.org/2000/svg" class="i xs" viewBox="0 0 24 24"><path d="M4 18c3 0 4-12 8-12s5 12 8 12"></path></svg></div>
+<div class="col grow"><span class="sh b6">Mögliche fehlende Fahrt</span><span class="fn sec num">Fr. 25.09. · 14:10–14:40 · Büro → Müller Haustechnik</span></div>
+<span class="fn" style="color: var(--acc); margin-top: 2px">Ergänzen</span>
+</a>
+<div class="row" style="align-items: flex-start">
+<div class="hr" style="width: 24px; height: 24px; border-radius: 12px; background: var(--warn-t); color: var(--warn); justify-content: center; flex: none"><svg xmlns="http://www.w3.org/2000/svg" class="i xs" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" style="stroke-dasharray: 3 3"></circle></svg></div>
+<div class="col grow" style="gap: 8px">
+<div class="col"><span class="sh b6">Fahrtart fehlt</span><span class="fn sec num">Fr. 25.09. · 16:55 · Müller Haustechnik → Zuhause</span></div>
+<div class="hr" style="gap: 6px">
+<button class="mini" type="button" style="background: var(--biz-t); color: var(--biz)"><svg xmlns="http://www.w3.org/2000/svg" class="i xs" viewBox="0 0 24 24"><path d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7M4 7h16v12H4zM4 12h16"></path></svg>Dienstlich</button>
+<button class="mini" type="button" style="background: var(--pri-t); color: var(--pri)"><svg xmlns="http://www.w3.org/2000/svg" class="i xs" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg>Privat</button>
+</div>
+</div>
+</div>
+<a class="row" href="TripDetail.dc.html" style="align-items: flex-start">
+<div class="hr" style="width: 24px; height: 24px; border-radius: 12px; background: var(--warn-t); color: var(--warn); justify-content: center; flex: none"><svg xmlns="http://www.w3.org/2000/svg" class="i xs" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></svg></div>
+<div class="col grow"><span class="sh b6">Geschäftspartner fehlt</span><span class="fn sec num">Do. 24.09. · 13:20 · Büro → Schmidt &amp; Partner</span></div>
+<span class="fn" style="color: var(--acc); margin-top: 2px">Ergänzen</span>
+</a>
+</div>
+</div>
+<div class="col">
+<div class="gh">Bereits geprüft</div>
+<div class="grp">
+<div class="row" style="min-height: 40px; padding: 9px 16px"><svg xmlns="http://www.w3.org/2000/svg" class="i sm" viewBox="0 0 24 24" style="color: var(--ok); width: 24px"><path d="m5 12 4.5 4.5L19 7"></path></svg><span class="sh grow">Keine überlappenden Zeiten</span></div>
+<div class="row" style="min-height: 40px; padding: 9px 16px"><svg xmlns="http://www.w3.org/2000/svg" class="i sm" viewBox="0 0 24 24" style="color: var(--ok); width: 24px"><path d="m5 12 4.5 4.5L19 7"></path></svg><span class="sh grow">Alle Adressen vollständig</span></div>
+<div class="row" style="min-height: 40px; padding: 9px 16px"><svg xmlns="http://www.w3.org/2000/svg" class="i sm" viewBox="0 0 24 24" style="color: var(--ok); width: 24px"><path d="m5 12 4.5 4.5L19 7"></path></svg><span class="sh grow">11 von 14 Fahrten vollständig</span></div>
+</div>
+</div>
+<div class="hr" style="gap: 10px; align-items: flex-start; padding: 0 4px">
+<svg xmlns="http://www.w3.org/2000/svg" class="i sm" viewBox="0 0 24 24" style="color: var(--sec); margin-top: 1px"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>
+<span class="fn sec">Danach ist KW 39 schreibgeschützt. Spätere Änderungen werden als Korrektur mit Datum, altem und neuem Wert und Begründung protokolliert.</span>
+</div>
+</div>
+<div class="col" style="padding: 10px 16px 34px; gap: 6px; background: var(--bar); box-shadow: 0 -.5px 0 var(--sep); flex: none">
+<button class="btn" type="button" disabled="">Woche abschließen</button>
+<span class="fn sec" style="text-align: center">Erst die 3 offenen Punkte klären · Teil von Pro</span>
+</div>
+</div>
+</div>
+</body></html>

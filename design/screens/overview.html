@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en-GB"><head>
+<meta charset="utf-8">
+<title>Overview</title>
+<style>
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue",Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+.s{--bg:#F2F2F7;--card:#FFFFFF;--card2:#F2F2F7;--fill:rgba(118,118,128,.12);--label:#000000;--sec:#6C6C70;--ter:#8A8A8E;--sep:rgba(60,60,67,.22);--bar:rgba(249,249,249,.94);--acc:#0B6B74;--acc-t:#E2F0F1;--on:#FFFFFF;--biz:#2A55C9;--biz-t:#E7EDFB;--pri:#A34E06;--pri-t:#FCEEDF;--com:#6B45B8;--com-t:#EFE9F9;--warn:#8F5200;--warn-t:#FFF3DC;--err:#C1271D;--err-t:#FDE8E6;--ok:#1B7A43;--ok-t:#E3F4EA;--m-bg:#ECEDE8;--m-rd:#FFFFFF;--m-mn:#DADBD3;--m-pk:#D6E5CC;--m-wt:#C8DBEA;--m-bl:#E2E2DB;position:relative;overflow:hidden;display:flex;flex-direction:column;background:var(--bg);color:var(--label);font-size:17px;line-height:22px;letter-spacing:-.41px}
+.s.dark{--bg:#000000;--card:#1C1C1E;--card2:#2C2C2E;--fill:rgba(118,118,128,.24);--label:#FFFFFF;--sec:#AEAEB2;--ter:#8D8D93;--sep:rgba(84,84,88,.65);--bar:rgba(22,22,24,.94);--acc:#3FC1C9;--acc-t:#0D3437;--on:#00292C;--biz:#86ABFF;--biz-t:#1B2848;--pri:#F4A45E;--pri-t:#3A2511;--com:#BBA0F6;--com-t:#2C2244;--warn:#FFB84D;--warn-t:#3A2A0C;--err:#FF7B72;--err-t:#3E1614;--ok:#5BD08A;--ok-t:#0F2F1D;--m-bg:#24272B;--m-rd:#3B3F45;--m-mn:#2E3136;--m-pk:#1F2B23;--m-wt:#1B2734;--m-bl:#2B2E32}
+.num{font-variant-numeric:tabular-nums}
+.lt{font-size:34px;line-height:41px;font-weight:700;letter-spacing:.37px}
+.t3{font-size:20px;line-height:25px;font-weight:600;letter-spacing:.38px}
+.hl{font-size:17px;line-height:22px;font-weight:600}
+.co{font-size:16px;line-height:21px;letter-spacing:-.32px}
+.sh{font-size:15px;line-height:20px;letter-spacing:-.24px}
+.fn{font-size:13px;line-height:18px;letter-spacing:-.08px}
+.sec{color:var(--sec)}.acc{color:var(--acc)}.b6{font-weight:600}.up{text-transform:uppercase}
+.col{display:flex;flex-direction:column}.hr{display:flex;align-items:center}.grow{flex:1;min-width:0}
+.safe{height:54px;flex:none}
+.nav{height:44px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 16px}
+.nb{display:inline-flex;align-items:center;gap:4px;border:0;background:none;padding:0;color:var(--acc);font-family:inherit;font-size:17px;letter-spacing:-.41px;min-height:44px;min-width:44px;text-decoration:none;cursor:pointer}
+.nb.r{justify-content:flex-end}
+.ttl{padding:2px 16px 10px;flex:none}
+.main{flex:1;min-height:0;display:flex;flex-direction:column;gap:20px;padding:4px 16px 100px}
+.card{background:var(--card);border-radius:16px;padding:16px}
+.ico{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;color:#FFFFFF;flex:none}
+svg.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+svg.sm{width:16px;height:16px;stroke-width:2.1}svg.xs{width:13px;height:13px;stroke-width:2.6}
+.chev{color:var(--ter)}
+.chip{display:inline-flex;align-items:center;gap:6px;min-height:32px;padding:5px 10px 5px 10px;border-radius:16px;font-size:15px;line-height:20px;font-weight:500;background:var(--card);color:var(--label);border:0;font-family:inherit;letter-spacing:-.24px;text-decoration:none;align-self:flex-start}
+.tag{display:inline-flex;align-items:center;gap:4px;height:24px;padding:0 8px 0 6px;border-radius:6px;font-size:13px;font-weight:600;line-height:18px;letter-spacing:-.08px;white-space:nowrap;flex:none}
+.tag.w{background:var(--warn-t);color:var(--warn)}
+.seg{display:grid;background:var(--fill);border-radius:9px;padding:2px;height:36px;flex:none}
+.seg>button{border:0;background:none;border-radius:7px;font-family:inherit;font-size:13px;font-weight:500;letter-spacing:-.08px;color:var(--label);display:flex;align-items:center;justify-content:center;gap:5px;padding:0 4px;white-space:nowrap}
+.seg>button.on{background:var(--card);font-weight:600;box-shadow:0 3px 8px rgba(0,0,0,.12),0 0 0 .5px rgba(0,0,0,.04)}
+.dark .seg>button.on{background:#636366}
+.tabbar{position:absolute;left:0;right:0;bottom:0;height:83px;background:var(--bar);box-shadow:0 -.5px 0 var(--sep);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding-top:7px}
+.tab{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10px;line-height:12px;font-weight:500;letter-spacing:.1px;color:var(--sec);text-decoration:none;position:relative}
+.tab svg.i{width:26px;height:26px;stroke-width:1.7}.tab.on{color:var(--acc)}
+.badge{position:absolute;top:-4px;left:54%;min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:#D70015;color:#FFFFFF;font-size:12px;font-weight:600;line-height:18px;text-align:center}
+</style>
+</head>
+<body>
+<div class="s" style="width: 393px; height: 852px">
+<div class="safe"></div>
+<div class="nav">
+<a class="chip" href="Health.dc.html" style="background: var(--ok-t); color: var(--ok)" aria-label="Open detection status"><svg xmlns="http://www.w3.org/2000/svg" class="i sm" viewBox="0 0 24 24"><path d="m5 12 4.5 4.5L19 7"></path></svg><span class="b6">Detection on</span><span style="opacity: .85">· 08:31</span></a>
+<a class="nb r" href="AddTrip.dc.html" aria-label="Add trip manually"><svg xmlns="http://www.w3.org/2000/svg" class="i" viewBox="0 0 24 24" style="width: 24px; height: 24px"><path d="M12 5v14M5 12h14"></path></svg></a>
+</div>
+<div class="ttl hr" style="justify-content: space-between; align-items: flex-end">
+<h1 class="lt" style="margin: 0">Overview</h1>
+<span class="fn sec" style="padding-bottom: 6px">Skoda Octavia · LD24 KXR</span>
+</div>
+<div class="main" style="gap: 12px">
+<div class="card col" style="gap: 2px">
+<span class="fn sec b6 up">September · business</span>
+<div class="hr" style="align-items: baseline; gap: 6px">
+<span class="num" style="font-size: 52px; line-height: 60px; font-weight: 700; letter-spacing: -.6px">256</span>
+<span class="t3 sec">mi</span>
+</div>
+<div class="hr" style="gap: 8px; flex-wrap: wrap">
+<span class="co">≈ <span class="num b6">£115.20</span> claimable</span>
+<span class="fn sec">45p/mi · estimate</span>
+</div>
+</div>
+<a class="card hr" href="Inbox.dc.html" style="gap: 14px; text-decoration: none; color: inherit; padding: 14px 16px">
+<div class="ico" style="width: 44px; height: 44px; border-radius: 12px; background: var(--acc-t); color: var(--acc)"><svg xmlns="http://www.w3.org/2000/svg" class="i" viewBox="0 0 24 24" style="width: 24px; height: 24px"><path d="M4 13h4.5l1.5 3h4l1.5-3H20"></path><path d="M4 13 6.5 5h11L20 13v6H4z"></path></svg></div>
+<div class="col grow">
+<span class="hl"><span class="num">7</span> trips to classify</span>
+<span class="sh sec">Swipe: → business, ← personal</span>
+</div>
+<svg xmlns="http://www.w3.org/2000/svg" class="i xs chev" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"></path></svg>
+</a>
+<div class="card col" style="gap: 14px">
+<div class="hr" style="justify-content: space-between; gap: 12px">
+<span class="hl">Trip share</span>
+<div class="seg" style="grid-template-columns: repeat(2, minmax(0, 1fr)); width: 148px; height: 32px">
+<button class="on" type="button">Month</button>
+<button type="button">Year</button>
+</div>
+</div>
+<div class="hr" style="gap: 3px; height: 14px">
+<div style="width: 62%; height: 100%; background: var(--biz); border-radius: 7px 2px 2px 7px"></div>
+<div style="width: 28%; height: 100%; background: var(--pri); border-radius: 2px"></div>
+<div style="width: 10%; height: 100%; background: var(--com); border-radius: 2px 7px 7px 2px"></div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+<div class="col" style="gap: 2px">
+<span class="fn b6 hr" style="gap: 4px; color: var(--biz)"><svg xmlns="http://www.w3.org/2000/svg" class="i xs" viewBox="0 0 24 24"><path d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7M4 7h16v12H4zM4 12h16"></path></svg>Business</span>
+<span class="hl num">256 mi</span>
+<span class="fn sec num">62 %</span>
+</div>
+<div class="col" style="gap: 2px">
+<span class="fn b6 hr" style="gap: 4px; color: var(--pri)"><svg xmlns="http://www.w3.org/2000/svg" class="i xs" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg>Personal</span>
+<span class="hl num">116 mi</span>
+<span class="fn sec num">28 %</span>
+</div>
+<div class="col" style="gap: 2px">
+<span class="fn b6 hr" style="gap: 4px; color: var(--com)"><svg xmlns="http://www.w3.org/2000/svg" class="i xs" viewBox="0 0 24 24"><path d="M4 8h15l-3-3M20 16H5l3 3"></path></svg>Commute</span>
+<span class="hl num">40 mi</span>
+<span class="fn sec num">10 %</span>
+</div>
+</div>
+<span class="fn sec" style="padding-top: 10px; border-top: .5px solid var(--sep)">Tax year 2026/27: <span class="num">63 %</span> business · <span class="num">2,390</span> of <span class="num">3,803 mi</span></span>
+</div>
+<a class="card hr" href="WeekClose.dc.html" style="gap: 14px; text-decoration: none; color: inherit; padding: 14px 16px">
+<div class="ico" style="width: 44px; height: 44px; border-radius: 12px; background: var(--fill); color: var(--label)"><svg xmlns="http://www.w3.org/2000/svg" class="i" viewBox="0 0 24 24" style="width: 24px; height: 24px"><rect x="3.5" y="5" width="17" height="15.5" rx="2"></rect><path d="M3.5 10h17M8 3v4M16 3v4M9 15l2 2 4-4"></path></svg></div>
+<div class="col grow" style="gap: 4px">
+<span class="hl">Close week 39</span>
+<span class="sh sec">21–27 Sept · afterwards only documented corrections</span>
+<span class="tag w" style="align-self: flex-start"><svg xmlns="http://www.w3.org/2000/svg" class="i xs" viewBox="0 0 24 24"><path d="M12 4 3 20h18zM12 10v4M12 17v.01"></path></svg><span class="num">2</span> incomplete</span>
+</div>
+<svg xmlns="http://www.w3.org/2000/svg" class="i xs chev" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"></path></svg>
+</a>
+</div>
+<nav class="tabbar" aria-label="Tabs">
+<a class="tab on" href="HomeEN.dc.html"><svg xmlns="http://www.w3.org/2000/svg" class="i" viewBox="0 0 24 24"><path d="M3.5 17.5a8.5 8.5 0 1 1 17 0"></path><path d="M12 17.5l4.5-5.5"></path></svg>Overview</a>
+<a class="tab" href="Inbox.dc.html"><svg xmlns="http://www.w3.org/2000/svg" class="i" viewBox="0 0 24 24"><path d="M5 17v-5l2.2-5.2A2 2 0 0 1 9 5.5h6a2 2 0 0 1 1.8 1.3L19 12v5"></path><path d="M3.5 17h17v2.5h-3V17M6.5 19.5h-3V17M5 12h14"></path></svg><span class="badge num">7</span>Trips</a>
+<a class="tab" href="Reports.dc.html"><svg xmlns="http://www.w3.org/2000/svg" class="i" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"></path><path d="M14 3v4h4M9 12h6M9 16h6"></path></svg>Reports</a>
+<a class="tab" href="Settings.dc.html"><svg xmlns="http://www.w3.org/2000/svg" class="i" viewBox="0 0 24 24"><path d="M12 2.5l1.6 2.3 2.7-.8.6 2.8 2.8.6-.8 2.7 2.3 1.6-2.3 1.6.8 2.7-2.8.6-.6 2.8-2.7-.8L12 21.5l-1.6-2.3-2.7.8-.6-2.8-2.8-.6.8-2.7L2.8 12l2.3-1.6-.8-2.7 2.8-.6.6-2.8 2.7.8z"></path><circle cx="12" cy="12" r="3.2"></circle></svg>Settings</a>
+</nav>
+</div>
+</body></html>

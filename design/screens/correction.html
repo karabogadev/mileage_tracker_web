@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en-GB"><head>
+<meta charset="utf-8">
+<title>Korrektur erfassen</title>
+<style>
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue",Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+.s{--bg:#F2F2F7;--card:#FFFFFF;--fill:rgba(118,118,128,.12);--label:#000000;--sec:#6C6C70;--ter:#8A8A8E;--sep:rgba(60,60,67,.22);--acc:#0B6B74;--acc-t:#E2F0F1;--on:#FFFFFF;--biz:#2A55C9;--biz-t:#E7EDFB;--err:#C1271D;position:relative;overflow:hidden;display:flex;flex-direction:column;background:#000000;color:var(--label);font-size:17px;line-height:22px;letter-spacing:-.41px}
+.s.dark{--bg:#1C1C1E;--card:#2C2C2E;--fill:rgba(118,118,128,.24);--label:#FFFFFF;--sec:#AEAEB2;--ter:#8D8D93;--sep:rgba(84,84,88,.65);--acc:#3FC1C9;--acc-t:#0D3437;--on:#00292C;--biz:#86ABFF;--biz-t:#1B2848;--err:#FF7B72}
+.num{font-variant-numeric:tabular-nums}
+.hl{font-size:17px;line-height:22px;font-weight:600}
+.sh{font-size:15px;line-height:20px;letter-spacing:-.24px}
+.fn{font-size:13px;line-height:18px;letter-spacing:-.08px}
+.sec{color:var(--sec)}.b6{font-weight:600}
+.col{display:flex;flex-direction:column}.hr{display:flex;align-items:center}.grow{flex:1;min-width:0}
+.nb{display:inline-flex;align-items:center;gap:4px;border:0;background:none;padding:0;color:var(--acc);font-family:inherit;font-size:17px;letter-spacing:-.41px;min-height:44px;text-decoration:none;cursor:pointer}
+.grp{background:var(--card);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.grp>*{position:relative}
+.grp>*+*::before{content:"";position:absolute;left:16px;right:0;top:0;height:.5px;background:var(--sep)}
+.row{display:flex;align-items:center;gap:12px;min-height:44px;padding:11px 16px;color:inherit;text-decoration:none}
+.gh{font-size:13px;line-height:18px;color:var(--sec);text-transform:uppercase;padding:0 16px 7px}
+svg.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+svg.sm{width:16px;height:16px;stroke-width:2.1}svg.xs{width:13px;height:13px;stroke-width:2.6}
+.chev{color:var(--ter)}
+.fld{border:0;background:none;font-family:inherit;font-size:17px;line-height:22px;letter-spacing:-.41px;color:var(--label);padding:0;width:100%;resize:none}
+.sheet{position:absolute;left:0;right:0;bottom:0;top:58px;background:var(--bg);border-radius:12px 12px 0 0;display:flex;flex-direction:column;overflow:hidden}
+</style>
+</head>
+<body>
+<div class="s" style="width: 393px; height: 852px">
+<div style="position: absolute; top: 46px; left: 18px; right: 18px; height: 40px; border-radius: 12px 12px 0 0; background: var(--bg); opacity: .55"></div>
+<div class="sheet">
+<div style="display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 6px 16px 0; flex: none">
+<a class="nb" href="TripDetail.dc.html" style="justify-self: start">Abbrechen</a>
+<span class="hl">Korrektur</span>
+<a class="nb" href="TripDetail.dc.html" style="justify-self: end; font-weight: 600">Speichern</a>
+</div>
+<div class="col" style="gap: 18px; padding: 8px 16px 24px">
+<div class="hr" style="gap: 12px; align-items: flex-start; background: var(--acc-t); border-radius: 12px; padding: 12px 14px">
+<svg xmlns="http://www.w3.org/2000/svg" class="i" viewBox="0 0 24 24" style="color: var(--acc)"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>
+<span class="sh"><span class="b6">KW 38 ist abgeschlossen.</span> Deine Änderung wird als Korrektur dokumentiert – der ursprüngliche Eintrag bleibt im Bericht sichtbar.</span>
+</div>
+<div class="grp">
+<div class="row" style="align-items: flex-start">
+<svg xmlns="http://www.w3.org/2000/svg" class="i" viewBox="0 0 24 24" style="color: var(--biz); margin-top: 1px"><path d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7M4 7h16v12H4zM4 12h16"></path></svg>
+<div class="col grow"><span class="sh b6 num">Mi. 16.09. · 09:10–09:28 · 7,4 km</span><span class="fn sec">Büro → Baustelle Wohnpark Lindenau, Lützner Str. 170</span></div>
+</div>
+</div>
+<div class="col">
+<div class="gh">Feld</div>
+<div class="grp"><a class="row" href="#"><span class="grow">Reisezweck</span><svg xmlns="http://www.w3.org/2000/svg" class="i xs chev" viewBox="0 0 24 24"><path d="m7 10 5 5 5-5"></path></svg></a></div>
+</div>
+<div class="col">
+<div class="gh">Bisher</div>
+<div class="grp"><div class="row"><span class="sec" style="text-decoration: line-through">Baustelle</span></div></div>
+</div>
+<div class="col">
+<div class="gh">Neu</div>
+<div class="grp"><label class="row"><input class="fld" value="Bauüberwachung Rohbau, Projekt 2026-109" aria-label="Neuer Reisezweck"></label></div>
+</div>
+<div class="col">
+<div class="gh">Begründung · Pflichtfeld</div>
+<div class="grp"><label class="row"><textarea class="fld" rows="2" aria-label="Begründung der Korrektur">Zweck präzisiert nach Rückfrage der Steuerberaterin</textarea></label></div>
+</div>
+<div class="col">
+<div class="gh">So steht es im Protokoll</div>
+<div style="background: var(--card); border-radius: 12px; padding: 12px 14px; border: 1px dashed var(--ter)">
+<span class="fn num" style="font-family: ui-monospace, 'SF Mono', Menlo, monospace; letter-spacing: 0; line-height: 19px">28.09.2026 10:42 · Korrektur zu Fahrt 16.09.2026 09:10<br>Reisezweck: „Baustelle“ → „Bauüberwachung Rohbau, Projekt 2026-109“<br>Grund: Zweck präzisiert nach Rückfrage der Steuerberaterin</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body></html>

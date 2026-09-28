@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en-GB"><head>
+<meta charset="utf-8">
+<title>Fahrten einordnen</title>
+<style>
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue",Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+.s{--bg:#F2F2F7;--card:#FFFFFF;--card2:#F2F2F7;--fill:rgba(118,118,128,.12);--label:#000000;--sec:#6C6C70;--ter:#8A8A8E;--sep:rgba(60,60,67,.22);--bar:rgba(249,249,249,.94);--acc:#0B6B74;--acc-t:#E2F0F1;--on:#FFFFFF;--biz:#2A55C9;--biz-t:#E7EDFB;--pri:#A34E06;--pri-t:#FCEEDF;--com:#6B45B8;--com-t:#EFE9F9;--warn:#8F5200;--warn-t:#FFF3DC;--err:#C1271D;--err-t:#FDE8E6;--ok:#1B7A43;--ok-t:#E3F4EA;--m-bg:#ECEDE8;--m-rd:#FFFFFF;--m-mn:#DADBD3;--m-pk:#D6E5CC;--m-wt:#C8DBEA;--m-bl:#E2E2DB;--bizf:#2A55C9;--prif:#A34E06;position:relative;overflow:hidden;display:flex;flex-direction:column;background:var(--bg);color:var(--label);font-size:17px;line-height:22px;letter-spacing:-.41px}
+.s.dark{--bg:#000000;--card:#1C1C1E;--card2:#2C2C2E;--fill:rgba(118,118,128,.24);--label:#FFFFFF;--sec:#AEAEB2;--ter:#8D8D93;--sep:rgba(84,84,88,.65);--bar:rgba(22,22,24,.94);--acc:#3FC1C9;--acc-t:#0D3437;--on:#00292C;--biz:#86ABFF;--biz-t:#1B2848;--pri:#F4A45E;--pri-t:#3A2511;--com:#BBA0F6;--com-t:#2C2244;--warn:#FFB84D;--warn-t:#3A2A0C;--err:#FF7B72;--err-t:#3E1614;--ok:#5BD08A;--ok-t:#0F2F1D;--m-bg:#24272B;--m-rd:#3B3F45;--m-mn:#2E3136;--m-pk:#1F2B23;--m-wt:#1B2734;--m-bl:#2B2E32;--bizf:#3B64D6;--prif:#A34E06}
+.num{font-variant-numeric:tabular-nums}
+.lt{font-size:34px;line-height:41px;font-weight:700;letter-spacing:.37px}
+.hl{font-size:17px;line-height:22px;font-weight:600}
+.co{font-size:16px;line-height:21px;letter-spacing:-.32px}
+.sh{font-size:15px;line-height:20px;letter-spacing:-.24px}
+.fn{font-size:13px;line-height:18px;letter-spacing:-.08px}
+.sec{color:var(--sec)}.acc{color:var(--acc)}.b6{font-weight:600}.up{text-transform:uppercase}
+.col{display:flex;flex-direction:column}.hr{display:flex;align-items:center}.grow{flex:1;min-width:0}
+.safe{height:54px;flex:none}
+.nav{height:44px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 16px}
+.nb{display:inline-flex;align-items:center;gap:4px;border:0;background:none;padding:0;color:var(--acc);font-family:inherit;font-size:17px;letter-spacing:-.41px;min-height:44px;min-width:44px;text-decoration:none;cursor:pointer}
+.nb.r{justify-content:flex-end}
+.ttl{padding:2px 16px 10px;flex:none}
+.card{background:var(--card);border-radius:16px;padding:16px}
+.grp{background:var(--card);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.grp>*{position:relative}
+.grp>*+*::before{content:"";position:absolute;left:16px;right:0;top:0;height:.5px;background:var(--sep);z-index:2}
+.grp>.rm::before{left:84px}
+.gh{font-size:13px;line-height:18px;color:var(--sec);text-transform:uppercase;padding:14px 16px 7px}
+svg.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+svg.sm{width:16px;height:16px;stroke-width:2.1}svg.xs{width:13px;height:13px;stroke-width:2.6}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;height:50px;width:100%;border:0;border-radius:14px;background:var(--acc);color:var(--on);font-family:inherit;font-size:17px;font-weight:600;letter-spacing:-.41px;text-decoration:none;cursor:pointer;flex:none}
+.btn.sm{height:34px;width:auto;padding:0 14px;border-radius:17px;font-size:15px;letter-spacing:-.24px}
+.tag{display:inline-flex;align-items:center;gap:4px;height:24px;padding:0 8px 0 6px;border-radius:6px;font-size:13px;font-weight:600;line-height:18px;letter-spacing:-.08px;white-space:nowrap;flex:none}
+.tag.b{background:var(--biz-t);color:var(--biz)}.tag.p{background:var(--pri-t);color:var(--pri)}.tag.u{background:var(--fill);color:var(--sec)}.tag.w{background:var(--warn-t);color:var(--warn)}
+.seg{display:grid;background:var(--fill);border-radius:9px;padding:2px;height:36px;flex:none}
+.seg>button{border:0;background:none;border-radius:7px;font-family:inherit;font-size:13px;font-weight:500;letter-spacing:-.08px;color:var(--label);display:flex;align-items:center;justify-content:center;gap:5px;padding:0 4px;white-space:nowrap}
+.seg>button.on{background:var(--card);font-weight:600;box-shadow:0 3px 8px rgba(0,0,0,.12),0 0 0 .5px rgba(0,0,0,.04)}
+.dark .seg>button.on{background:#636366}
+.tabbar{position:absolute;left:0;right:0;bottom:0;height:83px;background:var(--bar);box-shadow:0 -.5px 0 var(--sep);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding-top:7px;z-index:5}
+.tab{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10px;line-height:12px;font-weight:500;letter-spacing:.1px;color:var(--sec);text-decoration:none;position:relative}
+.tab svg.i{width:26px;height:26px;stroke-width:1.7}.tab.on{color:var(--acc)}
+.badge{position:absolute;top:-4px;left:54%;min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:#D70015;color:#FFFFFF;font-size:12px;font-weight:600;line-height:18px;text-align:center}
+.map{display:block;width:100%;height:100%}
+.mbg{fill:var(--m-bg)}.mpk{fill:var(--m-pk)}.mwt{fill:var(--m-wt)}.mbl{fill:var(--m-bl)}
+.mrd{stroke:var(--m-rd);fill:none;stroke-linecap:round;stroke-linejoin:round}
+.rtc{stroke:var(--card);fill:none;stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
+.rt{stroke:var(--acc);fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.ps{fill:var(--card);stroke:var(--acc);stroke-width:2}.pe{fill:var(--acc);stroke:var(--card);stroke-width:1.5}
+.mm{width:56px;height:56px;border-radius:10px;overflow:hidden;flex:none}
+.trow{display:flex;gap:12px;padding:12px 16px;align-items:flex-start;background:var(--card);color:inherit;text-decoration:none}
+.act{position:absolute;top:0;bottom:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:#FFFFFF;font-size:13px;font-weight:600}
+</style>
+</head>
+<body>
+<div class="s" style="width: 393px; height: 852px">
+<div class="safe"></div>
+<div class="nav">
+<a class="nb" href="InboxBulk.dc.html">Auswählen</a>
+<a class="nb r" href="AddTrip.dc.html" aria-label="Fahrt manuell hinzufügen"><svg xmlns="http://www.w3.org/2000/svg" class="i" viewBox="0 0 24 24" style="width: 24px; height: 24px"><path d="M12 5v14M5 12h14"></path></svg></a>
+</div>
+<div class="ttl"><h1 class="lt" style="margin: 0">Fahrten</h1></div>
+<div class="col" style="padding: 0 16px 6px; gap: 8px; flex: none">
+<div class="seg" style="grid-template-columns: repeat(2, minmax(0, 1fr))">
+<button class="on" type="button">Einordnen (<span class="num">7</span>)</button>
+<button type="button">Alle Fahrten</button>
+</div>
+<div class="hr fn sec" style="gap: 14px; justify-content: center">
+<span class="hr" style="gap: 4px"><svg xmlns="http://www.w3.org/2000/svg" class="i xs" viewBox="0 0 24 24" style="color: var(--biz)"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>dienstlich</span>
+<span class="hr" style="gap: 4px"><svg xmlns="http://www.w3.org/2000/svg" class="i xs" viewBox="0 0 24 24" style="color: var(--pri)"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg>privat</span>
+<span>Mehrere: Auswählen</span>
+</div>
+</div>
+<div class="col" style="flex: 1; min-height: 0; padding: 4px 16px 100px">
+<div class="card col" style="gap: 10px; padding: 14px 16px; box-shadow: inset 0 0 0 1.5px var(--warn-t)">
+<div class="hr" style="gap: 8px">
+<svg xmlns="http://www.w3.org/2000/svg" class="i sm" viewBox="0 0 24 24" style="color: var(--warn)"><path d="M4 18c3 0 4-12 8-12s5 12 8 12" style="stroke-dasharray: 2 3.5"></path></svg>
+<span class="fn b6 up" style="color: var(--warn)">Mögliche Lücke · Fr. 25. Sept.</span>
+</div>
+<span class="co">Zwischen Büro und Kunde Müller fehlt vermutlich eine Fahrt (<span class="num">14:10–14:40</span>).</span>
+<span class="fn sec">Kilometerstand springt um <span class="num">39 km</span>, ohne dass eine Fahrt erkannt wurde.</span>
+<div class="hr" style="gap: 8px">
+<a class="btn sm" href="AddTrip.dc.html">Fahrt ergänzen</a>
+<button class="btn sm" type="button" style="background: var(--fill); color: var(--label)">Ignorieren</button>
+</div>
+</div>
+<div class="gh">Heute · Mo. 28. Sept.</div>
+<div class="grp">
+<a class="trow" href="TripFlag.dc.html">
+<div class="mm"><svg xmlns="http://www.w3.org/2000/svg" class="map" viewBox="0 0 56 56"><rect class="mbg" width="56" height="56"></rect><path class="mpk" d="M0 38h14v18H0z"></path><path class="mrd" d="M0 24h56M40 0 36 56" style="stroke-width: 3"></path><path class="rtc" d="M8 44 18 34 30 30 46 12 14 8 44 22"></path><path class="rt" d="M8 44 18 34 30 30 46 12 14 8 44 22"></path><circle class="ps" cx="8" cy="44" r="3.5"></circle><circle class="pe" cx="44" cy="22" r="4"></circle></svg></div>
+<div class="col grow" style="gap: 3px">
+<div class="hr" style="justify-content: space-between; gap: 8px"><span class="hl num">12:05 – 12:48</span><span class="hl num" style="color: var(--warn)">96,4 km</span></div>
+<span class="sh sec">Müller Haustechnik GmbH, Halle → Büro, Karl-Heine-Str.</span>
+<div class="hr" style="gap: 6px; margin-top: 4px"><span class="tag w"><svg xmlns="http://www.w3.org/2000/svg" class="i xs" viewBox="0 0 24 24"><path d="M12 4 3 20h18zM12 10v4M12 17v.01"></path></svg>Strecke ungewöhnlich lang</span></div>
+</div>
+</a>
+<div class="rm" style="overflow: hidden">
+<div class="act" style="left: 0; width: 104px; background: var(--bizf)"><svg xmlns="http://www.w3.org/2000/svg" class="i" viewBox="0 0 24 24"><path d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7M4 7h16v12H4zM4 12h16"></path></svg>Dienstlich</div>
+<a class="trow" href="TripDetail.dc.html" style="transform: translateX(104px); box-shadow: -6px 0 12px rgba(0,0,0,.08)">
+<div class="mm"><svg xmlns="http://www.w3.org/2000/svg" class="map" viewBox="0 0 56 56"><rect class="mbg" width="56" height="56"></rect><path class="mwt" d="M30 0c4 14-2 30 6 56h-6c-7-24-1-42-6-56z"></path><path class="mrd" d="M0 22h56M46 0 40 56" style="stroke-width: 3"></path><path class="rtc" d="M10 46 20 32 34 26 46 10"></path><path class="rt" d="M10 46 20 32 34 26 46 10"></path><circle class="ps" cx="10" cy="46" r="3.5"></circle><circle class="pe" cx="46" cy="10" r="4"></circle></svg></div>
+<div class="col grow" style="gap: 3px">
+<div class="hr" style="justify-content: space-between; gap: 8px"><span class="hl num">07:52 – 08:31</span><span class="hl num">38,6 km</span></div>
+<span class="sh sec">Zuhause → Müller Haustechnik GmbH, Halle</span>
+<div class="hr" style="gap: 6px; margin-top: 4px"><span class="tag u"><svg xmlns="http://www.w3.org/2000/svg" class="i xs" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" style="stroke-dasharray: 3 3"></circle></svg>Offen</span><span class="fn sec">Vorschlag: dienstlich</span></div>
+</div>
+</a>
+</div>
+</div>
+<div class="gh">Gestern · So. 27. Sept.</div>
+<div class="grp">
+<a class="trow" href="TripDetail.dc.html">
+<div class="mm"><svg xmlns="http://www.w3.org/2000/svg" class="map" viewBox="0 0 56 56"><rect class="mbg" width="56" height="56"></rect><g class="mbl"><rect x="4" y="4" width="14" height="12" rx="1"></rect><rect x="36" y="36" width="16" height="14" rx="1"></rect></g><path class="mrd" d="M0 28h56M24 0v56" style="stroke-width: 3"></path><path class="rtc" d="M12 42 24 28 24 16 42 14"></path><path class="rt" d="M12 42 24 28 24 16 42 14"></path><circle class="ps" cx="12" cy="42" r="3.5"></circle><circle class="pe" cx="42" cy="14" r="4"></circle></svg></div>
+<div class="col grow" style="gap: 3px">
+<div class="hr" style="justify-content: space-between; gap: 8px"><span class="hl num">10:14 – 10:31</span><span class="hl num">6,2 km</span></div>
+<span class="sh sec">Zuhause → Georg-Schwarz-Straße 90, Leipzig</span>
+<div class="hr" style="gap: 6px; margin-top: 4px"><span class="tag u"><svg xmlns="http://www.w3.org/2000/svg" class="i xs" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" style="stroke-dasharray: 3 3"></circle></svg>Offen</span><span class="fn sec">Vorschlag: privat (Sonntag)</span></div>
+</div>
+</a>
+</div>
+<div class="gh">Fr. 25. Sept.</div>
+<div class="grp">
+<a class="trow" href="TripDetail.dc.html">
+<div class="mm"><svg xmlns="http://www.w3.org/2000/svg" class="map" viewBox="0 0 56 56"><rect class="mbg" width="56" height="56"></rect><path class="mwt" d="M30 0c4 14-2 30 6 56h-6c-7-24-1-42-6-56z"></path><path class="mrd" d="M0 30h56M12 0 16 56" style="stroke-width: 3"></path><path class="rtc" d="M46 10 34 24 20 30 10 46"></path><path class="rt" d="M46 10 34 24 20 30 10 46"></path><circle class="ps" cx="46" cy="10" r="3.5"></circle><circle class="pe" cx="10" cy="46" r="4"></circle></svg></div>
+<div class="col grow" style="gap: 3px">
+<div class="hr" style="justify-content: space-between; gap: 8px"><span class="hl num">16:55 – 17:36</span><span class="hl num">39,8 km</span></div>
+<span class="sh sec">Müller Haustechnik GmbH, Halle → Zuhause</span>
+</div>
+</a>
+</div>
+</div>
+<nav class="tabbar" aria-label="Tabs">
+<a class="tab" href="Main.dc.html"><svg xmlns="http://www.w3.org/2000/svg" class="i" viewBox="0 0 24 24"><path d="M3.5 17.5a8.5 8.5 0 1 1 17 0"></path><path d="M12 17.5l4.5-5.5"></path></svg>Übersicht</a>
+<a class="tab on" href="Inbox.dc.html"><svg xmlns="http://www.w3.org/2000/svg" class="i" viewBox="0 0 24 24"><path d="M5 17v-5l2.2-5.2A2 2 0 0 1 9 5.5h6a2 2 0 0 1 1.8 1.3L19 12v5"></path><path d="M3.5 17h17v2.5h-3V17M6.5 19.5h-3V17M5 12h14"></path></svg><span class="badge num">7</span>Fahrten</a>
+<a class="tab" href="Reports.dc.html"><svg xmlns="http://www.w3.org/2000/svg" class="i" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"></path><path d="M14 3v4h4M9 12h6M9 16h6"></path></svg>Berichte</a>
+<a class="tab" href="Settings.dc.html"><svg xmlns="http://www.w3.org/2000/svg" class="i" viewBox="0 0 24 24"><path d="M12 2.5l1.6 2.3 2.7-.8.6 2.8 2.8.6-.8 2.7 2.3 1.6-2.3 1.6.8 2.7-2.8.6-.6 2.8-2.7-.8L12 21.5l-1.6-2.3-2.7.8-.6-2.8-2.8-.6.8-2.7L2.8 12l2.3-1.6-.8-2.7 2.8-.6.6-2.8 2.7.8z"></path><circle cx="12" cy="12" r="3.2"></circle></svg>Einstellungen</a>
+</nav>
+</div>
+</body></html>
