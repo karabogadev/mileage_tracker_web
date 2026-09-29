@@ -1,4 +1,5 @@
-# Only nginx.conf and public/ go into the image
+# Only what the image needs
 *
 !nginx.conf
+!docker/
 !public/

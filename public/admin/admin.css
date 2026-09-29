@@ -1,0 +1,106 @@
+/* Admin panel – builds on site.css tokens (colours, radius, fonts, light/dark). */
+
+.admin main { padding-block: 32px 80px; }
+.admin h2 { font-size: 24px; margin-bottom: 16px; }
+.admin h3 { font-size: 18px; margin-bottom: 12px; }
+.admin h4 { font-size: 15px; margin-bottom: 8px; }
+.admin section { margin-bottom: 40px; }
+.admin h2 code { font-size: 17px; }
+.admin code { font: 13px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+
+/* ---------- Controls ---------- */
+
+.admin input, .admin select {
+  font: inherit; font-size: 16px; color: var(--text);
+  min-height: 40px; padding: 8px 12px; border-radius: 12px;
+  background: var(--card); border: 1px solid var(--line);
+}
+.admin input:focus-visible, .admin select:focus-visible { outline: 3px solid var(--acc); outline-offset: 1px; }
+.admin button { font-family: inherit; cursor: pointer; }
+.btn { border: 0; }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+.btn-quiet { background: var(--bg-2); color: var(--text); }
+.btn-quiet:hover { background: var(--line); color: var(--text); }
+.btn-danger { background: var(--pri); color: var(--card); }
+.btn-danger:hover { background: var(--pri); filter: brightness(.9); color: var(--card); }
+.btn-small { min-height: 32px; padding: 4px 12px; font-size: 14px; margin-left: 8px; }
+.link { font: inherit; background: none; border: 0; padding: 0; color: var(--acc); text-decoration: underline; text-underline-offset: 3px; }
+.link:hover { color: var(--acc-strong); }
+.back { margin-bottom: 20px; display: inline-block; }
+
+/* ---------- Login ---------- */
+
+.login { max-width: 460px; margin: 8vh auto 0; display: grid; gap: 14px; }
+.login h1 { font-size: 32px; }
+.login label { font-weight: 600; font-size: 15px; }
+.login input { width: 100%; }
+
+/* ---------- Toolbar / tabs ---------- */
+
+.toolbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 32px; flex-wrap: wrap; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: var(--bg-2); border-radius: 999px; overflow-x: auto; }
+.tabs button { border: 0; background: none; color: var(--sec); padding: 8px 18px; border-radius: 999px; font-weight: 600; font-size: 15px; white-space: nowrap; }
+.tabs button:focus-visible { outline-offset: -3px; }
+.tabs button[aria-selected="true"] { background: var(--card); color: var(--text); box-shadow: var(--shadow); }
+
+.panel-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 16px; flex-wrap: wrap; }
+.panel-head h2 { margin: 0; }
+.segmented { display: inline-flex; padding: 3px; background: var(--bg-2); border-radius: 999px; }
+.segmented button { border: 0; background: none; color: var(--sec); padding: 6px 14px; border-radius: 999px; font-size: 14px; font-weight: 600; }
+.segmented button[aria-pressed="true"] { background: var(--card); color: var(--text); box-shadow: var(--shadow); }
+
+/* ---------- Overview ---------- */
+
+.metrics { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+.metric { background: var(--card); border-radius: 16px; padding: 18px 20px; box-shadow: var(--shadow); display: grid; gap: 2px; align-content: start; }
+.metric-label { font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--sec); }
+.metric strong { font-family: var(--font-display); font-size: 32px; letter-spacing: -.03em; line-height: 1.2; }
+
+.chart-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 420px), 1fr)); gap: 16px; }
+.chart-card { background: var(--card); border-radius: 16px; padding: 18px 20px; box-shadow: var(--shadow); min-width: 0; }
+.chart-card h3 { margin-bottom: 4px; }
+.chart-value strong { font-size: 24px; letter-spacing: -.02em; }
+.chart { width: 100%; height: auto; margin-top: 8px; overflow: visible; }
+.ch-grid { stroke: var(--line); stroke-width: 1; }
+.ch-txt { fill: var(--ter); font-size: 11px; }
+.ch-area { fill: var(--acc-t); }
+.ch-line { fill: none; stroke: var(--acc); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.ch-dot { fill: var(--acc); }
+.ch-dot-open { fill: var(--card); stroke: var(--acc); stroke-width: 2; }
+.ch-hit { fill: transparent; }
+
+/* ---------- Tables / lists ---------- */
+
+.table-wrap { overflow-x: auto; background: var(--card); border-radius: 16px; box-shadow: var(--shadow); }
+table { width: 100%; border-collapse: collapse; font-size: 15px; }
+th, td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--sec); white-space: nowrap; }
+tbody tr:last-child td { border-bottom: 0; }
+tbody tr:hover td { background: var(--bg-2); }
+.more { margin-top: 16px; }
+.search { display: flex; gap: 8px; margin-bottom: 20px; }
+.search input { flex: 1; min-width: 0; }
+.empty { padding: 12px 0; }
+
+.health, .ent-list { list-style: none; margin: 0 0 16px; padding: 0; display: grid; gap: 10px; }
+
+.badge { display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: 13px; font-weight: 600; background: var(--bg-2); color: var(--sec); }
+.badge-ok { background: var(--ok-t); color: var(--ok); }
+.badge-warn { background: var(--warn-t); color: var(--warn); }
+
+/* ---------- Detail / grant ---------- */
+
+.detail-head { margin-bottom: 32px; }
+.detail-head h2 { margin-bottom: 8px; }
+.grant h4 { margin: 0 0 10px; }
+.grant { background: var(--card); border-radius: 16px; padding: 18px 20px; box-shadow: var(--shadow); margin-top: 12px; }
+.grant-row { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.notice-error { background: var(--pri-t); color: var(--pri); padding: 12px 16px; border-radius: 12px; font-size: 15px; margin: 8px 0; }
+
+/* ---------- Dialog ---------- */
+
+.dialog { border: 0; border-radius: var(--radius); padding: 24px; max-width: min(92vw, 440px); background: var(--card); color: var(--text); box-shadow: var(--shadow); }
+.dialog::backdrop { background: rgba(0, 0, 0, .45); }
+.dialog p { color: var(--sec); margin-bottom: 20px; }
+.dialog-actions { display: flex; justify-content: flex-end; gap: 8px; }
