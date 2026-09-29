@@ -70,11 +70,12 @@ export function renderCustomers(root) {
 
 function openCustomer(root, id) {
   const view = h('div', { class: 'detail' });
-  clear(root).append(h('button', { class: 'link back', type: 'button', onclick: () => { clear(root); renderCustomers(root); } }, '← All customers'), view);
-  loadDetail(view, id);
+  const backToList = () => { clear(root); renderCustomers(root); };
+  clear(root).append(h('button', { class: 'link back', type: 'button', onclick: backToList }, '← All customers'), view);
+  loadDetail(view, id, backToList);
 }
 
-const loadDetail = (view, id) => load(view, async () => {
+const loadDetail = (view, id, backToList) => load(view, async () => {
   const [customer, subscriptions, purchases, products, entitlements] = await Promise.all([
     api.getCustomer(id), api.listSubscriptions(id), api.listPurchases(id), api.listProducts(), api.listEntitlements(),
   ]);
@@ -82,7 +83,7 @@ const loadDetail = (view, id) => load(view, async () => {
   const entitlementName = (eid) => entitlements.find((e) => e.id === eid)?.display_name ?? eid;
   const active = customer.active_entitlements?.items ?? [];
   const hasPromo = subscriptions.some((s) => s.store === 'promotional' && s.gives_access !== false);
-  const reload = () => loadDetail(view, id);
+  const reload = () => loadDetail(view, id, backToList);
   const status = h('div', { role: 'status' }); // errors from grant/revoke land here, one at a time
 
   return [
@@ -102,6 +103,10 @@ const loadDetail = (view, id) => load(view, async () => {
 
     h('section', {}, h('h3', {}, 'Purchases'), table(['Product', 'Date', 'Store', 'Status', 'Revenue'], purchases.map((p) => [
       productName(p.product_id), formatDate(p.purchased_at), p.store ?? '–', p.status ?? '–', revenue(p.revenue_in_usd)]))),
+
+    h('section', { class: 'danger-zone' }, h('h3', {}, 'Danger zone'),
+      h('p', { class: 'muted' }, 'Permanently deletes this customer and their data from RevenueCat. This cannot be undone and does not cancel any store subscription.'),
+      h('button', { class: 'btn btn-danger', type: 'button', onclick: (e) => remove(e.currentTarget, customer, status, backToList) }, 'Delete customer…')),
   ];
 });
 
@@ -155,14 +160,32 @@ const revoke = (button, customer, active, name, status, reload) => guarded(butto
   reload();
 });
 
-function confirmDialog({ title, body, confirmLabel, danger = false }) {
+const remove = (button, customer, status, backToList) => guarded(button, status, async () => {
+  const ok = await confirmDialog({
+    title: 'Delete customer?',
+    body: `${customer.id} and all their data will be permanently deleted from RevenueCat. This cannot be undone.`,
+    confirmLabel: 'Delete',
+    danger: true,
+    requireText: 'delete',
+  });
+  if (!ok) return;
+  await api.deleteCustomer(customer.id);
+  backToList();
+});
+
+/** Resolves true on confirm. With `requireText` the confirm button stays disabled until that word is typed. */
+function confirmDialog({ title, body, confirmLabel, danger = false, requireText }) {
   return new Promise((resolve) => {
+    const confirm = h('button', { class: `btn${danger ? ' btn-danger' : ''}`, value: 'confirm', disabled: !!requireText }, confirmLabel);
+    const field = requireText && h('input', {
+      type: 'text', autocomplete: 'off', placeholder: requireText, 'aria-label': `Type "${requireText}" to confirm`,
+      oninput: () => { confirm.disabled = field.value.trim().toLowerCase() !== requireText; },
+    });
     const dialog = h('dialog', { class: 'dialog', 'aria-labelledby': 'dlg-title' },
       h('form', { method: 'dialog' },
         h('h3', { id: 'dlg-title' }, title), h('p', {}, body),
-        h('div', { class: 'dialog-actions' },
-          h('button', { class: 'btn btn-quiet', value: 'cancel' }, 'Cancel'),
-          h('button', { class: `btn${danger ? ' btn-danger' : ''}`, value: 'confirm' }, confirmLabel))));
+        field && h('p', { class: 'dialog-confirm' }, h('label', {}, `Type "${requireText}" to confirm`), field),
+        h('div', { class: 'dialog-actions' }, h('button', { class: 'btn btn-quiet', value: 'cancel' }, 'Cancel'), confirm)));
     dialog.addEventListener('close', () => { resolve(dialog.returnValue === 'confirm'); dialog.remove(); });
     document.body.append(dialog);
     dialog.showModal();

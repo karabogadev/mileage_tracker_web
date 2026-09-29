@@ -75,3 +75,12 @@ Secret key is typed into the panel, kept **in memory only** (never storage, neve
   error is shown).
 - Lesson: don't trust a comment or a reviewer claim about nginx escaping – curl it. Reused site.css class names (`.checks`,
   `.section-head`) twice; grep site.css before naming admin classes.
+
+## Delete customer
+- [x] `api.deleteCustomer` → `DELETE /projects/{id}/customers/{customer_id}` (path confirmed in the RevenueCat v2 docs)
+- [x] Customer detail: "Danger zone" with a delete button; confirm dialog needs the word `delete` typed (button disabled until then);
+      after deletion the panel returns to the customer list. Errors show inline like grant/revoke.
+- [x] Dialog text wraps long customer IDs (`overflow-wrap: anywhere`), which also fixes clipped IDs in the grant/revoke dialogs
+- [x] Verified against a mocked fetch in headless Chrome: button disabled at start and for a partial word, cancel makes no call,
+      `" Delete "` enables it, exactly one `DELETE /customers/<id>` is sent, view returns to the list; grant/revoke unchanged.
+- Not verified with a real key: what RevenueCat returns for the DELETE (the client only needs a 2xx).

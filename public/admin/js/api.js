@@ -97,5 +97,7 @@ export const listWebhooks = () => all(project('/integrations/webhooks'));
 export const grantEntitlement = (id, entitlementId, expiresAt) =>
   request(customer(id, '/actions/grant_entitlement'), { method: 'POST', body: { entitlement_id: entitlementId, expires_at: expiresAt } });
 
+export const deleteCustomer = (id) => request(customer(id), { method: 'DELETE' });
+
 export const revokeEntitlement = (id, entitlementId) =>
   request(customer(id, '/actions/revoke_granted_entitlement'), { method: 'POST', body: { entitlement_id: entitlementId } });

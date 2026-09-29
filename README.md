@@ -39,7 +39,7 @@ open http://localhost:8080
 ## Admin panel
 
 `/admin` shows the Fahrtenbuch RevenueCat project (overview metrics, trend charts, customers with subscriptions and
-purchases, configuration health) and can grant or revoke promotional premium for a customer.
+purchases, configuration health) and can grant or revoke promotional premium for a customer and permanently delete a customer (confirmed by typing `delete`).
 There is no backend: the browser calls the RevenueCat REST API v2 directly.
 
 Two locks protect it:
@@ -51,8 +51,8 @@ Two locks protect it:
    address, so that cap is global rather than per visitor.
 2. **RevenueCat secret key, typed into the panel.** It is held in memory only (no storage, cookie or URL), dropped on
    reload, on the *Lock* button and after 15 idle minutes. Create a dedicated v2 secret key for this project in
-   RevenueCat → API keys. Read-only permissions are enough to browse; granting and revoking premium needs write access
-   to customer information. Never commit or paste the key anywhere else.
+   RevenueCat → API keys. Read-only permissions are enough to browse; granting/revoking premium and deleting customers
+   need write access to customer information. Never commit or paste the key anywhere else.
 
 `/admin` has its own CSP (`script-src 'self'`, `connect-src https://api.revenuecat.com`) and is sent with `noindex` and
 `no-store`; every other route keeps the strict no-JavaScript CSP. Locally:
