@@ -11,13 +11,17 @@ const DURATIONS = [
 // total_revenue_in_usd / revenue_in_usd are { gross, proceeds, … } objects
 const revenue = (money) => formatValue(money && typeof money === 'object' ? money.gross : money, '$');
 
+// RevenueCat queues a deletion and processes it in the background, so a deleted customer can still be listed for a
+// while. Remember them for this session so the list doesn't look like the delete failed.
+const deleted = new Set();
+
 // ---------- List ------------------------------------------------------------------------------------------
 
-export function renderCustomers(root) {
+export function renderCustomers(root, notice) {
   const results = h('div');
   const input = h('input', { type: 'search', name: 'q', placeholder: 'Email, app user ID or store transaction ID', autocomplete: 'off', 'aria-label': 'Search customers' });
   const form = h('form', { class: 'search', onsubmit: (e) => { e.preventDefault(); search(input.value.trim()); } }, input, h('button', { class: 'btn', type: 'submit' }, 'Search'));
-  root.append(form, results);
+  root.append(...[notice, form, results].filter(Boolean));
 
   // A newer search invalidates every response still in flight, including "Load more" for the previous one.
   let latest = 0;
@@ -34,7 +38,7 @@ export function renderCustomers(root) {
   }
 
   function show({ items, next }, mine) {
-    const list = table(['Customer', 'Country', 'Platform', 'App', 'First seen', 'Last seen'], items.map(row), 'No customers found');
+    const list = table(['Customer', 'Country', 'Platform', 'App', 'First seen', 'Last seen'], visible(items).map(row), 'No customers found');
     clear(results).append(list);
     if (items.length) more({ next }, list, mine);
   }
@@ -46,7 +50,7 @@ export function renderCustomers(root) {
       try {
         const page = await api.listCustomers({ cursor: next });
         if (mine !== latest) return;
-        appendRows(list, page.items.map(row));
+        appendRows(list, visible(page.items).map(row));
         button.remove();
         more(page, list, mine);
       } catch (err) {
@@ -56,6 +60,8 @@ export function renderCustomers(root) {
     } }, 'Load more');
     results.append(button);
   }
+
+  const visible = (items) => items.filter((c) => !deleted.has(c.id));
 
   const row = (c) => [
     h('button', { class: 'link', type: 'button', onclick: () => openCustomer(root, c.id) }, h('code', {}, c.id)),
@@ -70,8 +76,8 @@ export function renderCustomers(root) {
 
 function openCustomer(root, id) {
   const view = h('div', { class: 'detail' });
-  const backToList = () => { clear(root); renderCustomers(root); };
-  clear(root).append(h('button', { class: 'link back', type: 'button', onclick: backToList }, '← All customers'), view);
+  const backToList = (notice) => { clear(root); renderCustomers(root, notice); };
+  clear(root).append(h('button', { class: 'link back', type: 'button', onclick: () => backToList() }, '← All customers'), view);
   loadDetail(view, id, backToList);
 }
 
@@ -85,6 +91,7 @@ const loadDetail = (view, id, backToList) => load(view, async () => {
   const hasPromo = subscriptions.some((s) => s.store === 'promotional' && s.gives_access !== false);
   const reload = () => loadDetail(view, id, backToList);
   const status = h('div', { role: 'status' }); // errors from grant/revoke land here, one at a time
+  const deleteStatus = h('div', { role: 'status' }); // next to the delete button, so its errors are seen
 
   return [
     h('header', { class: 'detail-head' }, h('h2', {}, h('code', {}, customer.id)),
@@ -106,7 +113,8 @@ const loadDetail = (view, id, backToList) => load(view, async () => {
 
     h('section', { class: 'danger-zone' }, h('h3', {}, 'Danger zone'),
       h('p', { class: 'muted' }, 'Permanently deletes this customer and their data from RevenueCat. This cannot be undone and does not cancel any store subscription.'),
-      h('button', { class: 'btn btn-danger', type: 'button', onclick: (e) => remove(e.currentTarget, customer, status, backToList) }, 'Delete customer…')),
+      h('button', { class: 'btn btn-danger', type: 'button', onclick: (e) => remove(e.currentTarget, customer, deleteStatus, backToList) }, 'Delete customer…'),
+      deleteStatus),
   ];
 });
 
@@ -120,6 +128,7 @@ async function guarded(button, status, action) {
     await action();
   } catch (err) {
     status.append(errorBox(err));
+    status.scrollIntoView({ block: 'nearest' });
   } finally {
     button.disabled = false;
   }
@@ -170,24 +179,32 @@ const remove = (button, customer, status, backToList) => guarded(button, status,
   });
   if (!ok) return;
   await api.deleteCustomer(customer.id);
-  backToList();
+  deleted.add(customer.id);
+  backToList(h('div', { class: 'notice-ok', role: 'status' },
+    `Deletion of ${customer.id} is queued. RevenueCat processes it in the background, so it can take a few minutes to disappear everywhere.`));
 });
 
-/** Resolves true on confirm. With `requireText` the confirm button stays disabled until that word is typed. */
+/**
+ * Resolves true on confirm. With `requireText` the confirm button stays disabled until that word is typed.
+ * Plain buttons close the dialog directly: no form submission, so Enter can't hit Cancel and the admin CSP's
+ * form-action 'none' can't get in the way.
+ */
 function confirmDialog({ title, body, confirmLabel, danger = false, requireText }) {
   return new Promise((resolve) => {
-    const confirm = h('button', { class: `btn${danger ? ' btn-danger' : ''}`, value: 'confirm', disabled: !!requireText }, confirmLabel);
+    const typed = () => !field || field.value.trim().toLowerCase() === requireText;
     const field = requireText && h('input', {
-      type: 'text', autocomplete: 'off', placeholder: requireText, 'aria-label': `Type "${requireText}" to confirm`,
-      oninput: () => { confirm.disabled = field.value.trim().toLowerCase() !== requireText; },
+      type: 'text', autocomplete: 'off', autocapitalize: 'off', placeholder: requireText, 'aria-label': `Type "${requireText}" to confirm`,
+      oninput: () => { confirm.disabled = !typed(); },
+      onkeydown: (e) => { if (e.key === 'Enter') { e.preventDefault(); if (typed()) dialog.close('confirm'); } },
     });
+    const confirm = h('button', { class: `btn${danger ? ' btn-danger' : ''}`, type: 'button', disabled: !typed(), onclick: () => dialog.close('confirm') }, confirmLabel);
     const dialog = h('dialog', { class: 'dialog', 'aria-labelledby': 'dlg-title' },
-      h('form', { method: 'dialog' },
-        h('h3', { id: 'dlg-title' }, title), h('p', {}, body),
-        field && h('p', { class: 'dialog-confirm' }, h('label', {}, `Type "${requireText}" to confirm`), field),
-        h('div', { class: 'dialog-actions' }, h('button', { class: 'btn btn-quiet', value: 'cancel' }, 'Cancel'), confirm)));
+      h('h3', { id: 'dlg-title' }, title), h('p', {}, body),
+      field && h('p', { class: 'dialog-confirm' }, h('label', {}, `Type "${requireText}" to confirm`), field),
+      h('div', { class: 'dialog-actions' }, h('button', { class: 'btn btn-quiet', type: 'button', onclick: () => dialog.close('cancel') }, 'Cancel'), confirm));
     dialog.addEventListener('close', () => { resolve(dialog.returnValue === 'confirm'); dialog.remove(); });
     document.body.append(dialog);
     dialog.showModal();
+    (field || confirm).focus();
   });
 }

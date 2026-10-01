@@ -51,7 +51,7 @@ async function request(path, { method = 'GET', params, body, retries = 2 } = {})
   const data = await res.json().catch(() => null);
   if (res.status === 401) { lock(); onRejected(); }
   if (!res.ok) {
-    const hint = res.status === 403 ? ' – the key lacks a permission for this call' : '';
+    const hint = res.status === 403 ? ' – the key lacks a permission for this call (deleting and granting need Customer information: Read & Write)' : '';
     throw new ApiError(res.status, `${data?.message ?? res.statusText}${hint}`, requestId);
   }
   return data;

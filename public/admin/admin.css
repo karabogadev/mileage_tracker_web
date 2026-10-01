@@ -110,3 +110,4 @@ tbody tr:hover td { background: var(--bg-2); }
 .dialog-confirm label { font-size: 14px; font-weight: 600; color: var(--text); }
 .dialog-confirm input { width: 100%; }
 .dialog-actions { display: flex; justify-content: flex-end; gap: 8px; }
+.notice-ok { background: var(--ok-t); color: var(--ok); padding: 12px 16px; border-radius: 12px; font-size: 15px; margin: 0 0 16px; }
